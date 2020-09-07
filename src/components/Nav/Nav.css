@@ -35,3 +35,11 @@
 .nav-right {
   float: right;
 }
+.hamburger {
+  margin-top: 5px;
+  margin-right: 10px;
+}
+.hamburgerMenu{
+  width: 60px;
+  height: 60px;
+}
