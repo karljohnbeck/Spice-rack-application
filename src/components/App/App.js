@@ -19,6 +19,11 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import AddSpice from '../AddSpice/AddSpice';
+import EditSpice from '../EditSpice/EditSpice';
+import Categories from '../Categories/Categories'
+import Expiration from '../ExpList/ExpList'
+import RecipeList from '../RecipeList/RecipeList'
 
 import './App.css';
 
@@ -60,6 +65,38 @@ class App extends Component {
               exact
               path="/info"
               component={InfoPage}
+            />
+
+            <ProtectedRoute
+              // logged in shows UserPage else shows LoginPage
+              exact
+              path="/addspice"
+              component={AddSpice}
+            />
+
+            <ProtectedRoute
+              // logged in shows UserPage else shows LoginPage
+              exact
+              path="/editspice"
+              component={EditSpice}
+            />
+            <ProtectedRoute
+              // logged in shows UserPage else shows LoginPage
+              exact
+              path="/categories"
+              component={Categories}
+            />
+            <ProtectedRoute
+              // logged in shows UserPage else shows LoginPage
+              exact
+              path="/expiration"
+              component={Expiration}
+            />
+            <ProtectedRoute
+              // logged in shows UserPage else shows LoginPage
+              exact
+              path="/recipe"
+              component={RecipeList}
             />
 
             {/* When a value is supplied for the authRedirect prop the user will
