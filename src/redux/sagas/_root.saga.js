@@ -5,6 +5,7 @@ import userSaga from './user.saga';
 import spiceListSaga from './spicelist.saga';
 import categoriesListSaga from './categorieslist.saga'
 import addSpiceSaga from './addSpice.saga'
+import EditSpiceSaga from './EditSpice.saga'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -21,5 +22,6 @@ export default function* rootSaga() {
     spiceListSaga(),
     categoriesListSaga(),
     addSpiceSaga(),
+    EditSpiceSaga(),
   ]);
 }

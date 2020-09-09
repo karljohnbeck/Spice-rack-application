@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import { Link } from 'react-router-dom';
+import { Link, withRouter  } from 'react-router-dom';
+
 
 import { withStyles, Typography, Button, CardContent, CardActions, Card } from '@material-ui/core';
 
@@ -51,12 +52,16 @@ class SpiceList extends Component {
     }
 
     deleteSpice = () => {
-        console.log('woo')
-    this.props.dispatch({type: 'DELETE_SPICE', payload: this.props.spiceId})
+    this.props.dispatch({type: 'DELETE_SPICE', payload: this.props.spice.id})
     }
+
+
+
 
     render() {
         const { classes } = this.props;
+        const spice_id = this.props.spice.id
+
         return (
             <div>
 
@@ -64,13 +69,13 @@ class SpiceList extends Component {
                     <Card onClick={this.toggleState} className={classes.card}>
                         <CardContent>
                             <Typography variant="h5" component="h2">
-                                {this.props.spice}
+                                {this.props.spice.name}
                             </Typography>
 
                             <br />
 
                             {this.props.store.categoriesList.map((category, i) => {
-                                if (this.props.spiceId === category.spice_id) {
+                                if (this.props.spice.id === category.spice_id) {
                                     return (
                                         <Typography key={i} component="p">
                                             {category.name}
@@ -87,7 +92,9 @@ class SpiceList extends Component {
                         </CardActions>
                         <br />
                         <CardActions className={classes.cardAction}>
-                            <Button component={Link} to='/editspice' size="small">Edit Spice</Button>
+                            {/* <Button onClick={this.editingSpice} component={Link} to={'/editspice/' + spice_id} size="small">Edit Spice</Button> */}
+                            <Button onClick={() => this.props.history.push('/editspice/' + spice_id)} size="small">Edit Spice</Button>
+
                         </CardActions>
                         <br />
                         <CardActions className={classes.cardAction}>
@@ -100,6 +107,8 @@ class SpiceList extends Component {
     }
 }
 
-const styleSpiceList = withStyles(styles)(SpiceList)
+const withRouterSpiceList = withRouter(SpiceList) 
+
+const styleSpiceList = withStyles(styles)(withRouterSpiceList)
 
 export default connect(mapStoreToProps)(styleSpiceList);

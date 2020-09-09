@@ -4,6 +4,7 @@ import user from './user.reducer';
 import spiceList from './spiceList.reducer'
 import categoriesList from './categoriesList.reducer'
 import uniqueCategories from './uniqueUserCategories.reducer'
+import EditingSpice from './editingSpice.reducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   spiceList,
   categoriesList,
   uniqueCategories,
+  EditingSpice,
 });
 
 export default rootReducer;

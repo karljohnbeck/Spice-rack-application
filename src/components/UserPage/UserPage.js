@@ -65,7 +65,7 @@ class UserPage extends Component {
         >
           <Grid item xs={5}>
             <Card >
-              <TextField className={classes.margin} id="filled-basic" label="title" variant="filled" />
+              <TextField className={classes.margin} id="filled-basic" label="Search by name" variant="filled" />
               <br />
               <Button component={Link} to='/addspice' className={classes.margin}>+ Add a spice</Button>
               {/* Needs to be multi select eventually */}
@@ -92,7 +92,7 @@ class UserPage extends Component {
         {this.props.store.spiceList.map((spice, i) => {
           return (
             <Grid key={i} item xs={6}>
-              <SpiceList spice={spice.name} spiceId={spice.id} />
+              <SpiceList spice={spice} />
             </Grid>
           )
         })}

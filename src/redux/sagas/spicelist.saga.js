@@ -31,9 +31,18 @@ function* deleteSpice(action) {
 }
 }
 
+// function* storeSpiceForEdit(action) {
+//   try{
+//     yield put({ type: 'STORE_SPICE_FOR_EDIT', payload: action.payload});
+//   } catch (error) {
+//     console.log('error in storeSpiceForEdit', error)
+//   }
+// }
+
 function* spiceListSaga() {
   yield takeLatest('FETCH_SPICELIST', fetchSpiceList);
   yield takeLatest('DELETE_SPICE', deleteSpice);
+  // yield takeLatest('STORE_CLICKED_SPICE', storeSpiceForEdit)
   }
 
 

@@ -14,7 +14,7 @@ const styles = {
   card: {
     minHeight: '300px',
     maxHeight: '300px',
-
+    minWidth: '300px'
   },
   cardAction: {
     backgroundColor: 'yellow',
@@ -80,7 +80,7 @@ class AddSpice extends Component {
             justify="center"
           >
             <Grid item xs={5}>
-              <Card >
+              <Card className={classes.card} >
                 <TextField onChange={this.handleChange}
                   className={classes.margin}
                   id="spice-name"
@@ -89,6 +89,7 @@ class AddSpice extends Component {
                     name: 'name',
                     id: 'spice-name',
                   }} />
+                  <br/>
                 <Input type='Date' className={classes.margin}
                   variant="outlined"
                   id="exp-date"

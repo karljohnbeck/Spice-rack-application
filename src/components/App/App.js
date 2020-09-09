@@ -29,9 +29,9 @@ import './App.css';
 
 class App extends Component {
   componentDidMount() {
+    this.props.dispatch({ type: 'FETCH_USER' });
+    this.props.dispatch({type: 'FETCH_SPICELIST'});
     this.props.dispatch({type: 'FETCH_CATEGORIES'});
-        this.props.dispatch({ type: 'FETCH_USER' });
-
   }
 
   render() {
@@ -55,12 +55,7 @@ class App extends Component {
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
-            <ProtectedRoute
-              // logged in shows UserPage else shows LoginPage
-              exact
-              path="/user"
-              component={UserPage}
-            />
+            
 
             <ProtectedRoute
               // logged in shows InfoPage else shows LoginPage
@@ -78,8 +73,8 @@ class App extends Component {
 
             <ProtectedRoute
               // logged in shows UserPage else shows LoginPage
-              exact
-              path="/editspice"
+              
+              path="/editspice/:spice_id"
               component={EditSpice}
             />
             <ProtectedRoute
@@ -99,6 +94,13 @@ class App extends Component {
               exact
               path="/recipe"
               component={RecipeList}
+            />
+
+            <ProtectedRoute
+              // logged in shows UserPage else shows LoginPage
+              exact
+              path="/user"
+              component={UserPage}
             />
 
             {/* When a value is supplied for the authRedirect prop the user will
