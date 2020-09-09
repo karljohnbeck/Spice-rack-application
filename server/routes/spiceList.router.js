@@ -27,7 +27,32 @@ WHERE "spices".user_id = $1`;
  * POST route template
  */
 router.post('/', (req, res) => {
-    // POST route code here
+    console.log(req.body)
+    const queryText =
+    `INSERT INTO "spices" ("name", "exp_date", "user_id")
+    VALUES ($1, $2, $3)
+    RETURNING "id";`;
+    pool.query(queryText, [req.body.name, req.body.exp_date, req.user.id])
+    .then(result => {
+        console.log('new spice id', result.rows[0].id)
+        const newSpiceId = result.rows[0].id
+        const secondQueryText = 
+        `INSERT INTO "spices_categories" ("categories_id", "spices_id")
+        VALUES($1, $2);`
+        req.body.categories_id.map((category_id, i) => {
+            pool.query(secondQueryText, [category_id, newSpiceId])
+            .then(result => {
+                res.sendStatus(201);
+            }).catch(err => {
+                // catch for second query
+                console.log(err);
+                res.sendStatus(500)
+              })
+        })
+    }).catch(err => {
+        console.log(err);
+        res.sendStatus(500)
+      })
 });
 
 module.exports = router;

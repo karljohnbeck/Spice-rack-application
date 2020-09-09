@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { Link } from 'react-router-dom';
 
+
 // material ui 
 import { InputLabel, MenuItem, Input, withStyles, Grid, Select, Button, Card, TextField } from '@material-ui/core';
 
@@ -12,8 +13,8 @@ const styles = {
     paddingRight: '10px',
   },
   card: {
-    minHeight: '200px',
-    maxHeight: '200px',
+    minHeight: '300px',
+    maxHeight: '300px',
 
   },
   cardAction: {
@@ -46,20 +47,20 @@ const styles = {
 class AddSpice extends Component {
   state = {
     heading: 'AddSpice Component',
+    name: '',
+    exp_date: null,
     categoryList: [],
-    list: []
+    list: [],
+
   };
 
   componentDidMount() {
-    let list = []
-    {
-      this.props.store.categoriesList.map((category, i) => {
-        list.push(category.name)
-        console.log(list)
-      })
-    }
-    let newList = [...new Set(list)]
-    this.setState({ categoryList: newList })
+  
+    const uniq = {}
+    const categories = this.props.store.categoriesList
+    const arrFiltered = categories.filter(obj => !uniq[obj.id] && (uniq[obj.id] = true));
+    console.log('arrFiltered', arrFiltered)
+    this.setState({ categoryList: arrFiltered })
   }
 
   handleChange = event => {
@@ -67,6 +68,22 @@ class AddSpice extends Component {
   };
   dateChange = event => {
     console.log(event.target.value)
+  }
+
+  addSpice = () =>  {
+
+    this.props.dispatch ({
+      type: 'ADD_SPICE',
+      payload: {
+        name: this.state.name,
+        exp_date: this.state.exp_date,
+        categories_id: this.state.list, 
+      }
+    })
+  }
+
+  clearState = () => {
+
   }
 
   render() {
@@ -85,14 +102,25 @@ class AddSpice extends Component {
           >
             <Grid item xs={5}>
               <Card >
-                <TextField className={classes.margin} id="filled-basic" label="Spice name" variant="filled" />
+                <TextField onChange={this.handleChange} 
+                className={classes.margin} 
+                id="spice-name" 
+                label="Spice name" 
+                inputProps={{
+                  name: 'name',
+                  id: 'spice-name',
+              }}/>
                 <Input type='Date' className={classes.margin}
                   variant="outlined" 
-                  onChange={this.dateChange}/>
+                  id="exp-date" 
+                  inputProps={{
+                    name: 'exp_date',
+                    id: 'exp-date',
+                }}
+                onChange={this.handleChange} />
                 <br />
                 {/* Needs to be multi select eventually */}
                 <InputLabel className={classes.margin} htmlFor="category-simple">Categories</InputLabel>
-
                 <Select
                   className={classes.margin}
                   value={this.state.list}
@@ -104,16 +132,16 @@ class AddSpice extends Component {
                   multiple>
                   {this.state.categoryList.map((item, i) => {
                     return (
-                      <MenuItem key={i} value={item} >
-                        {String(item)}
+                      <MenuItem key={i} value={item.id} >
+                        {String(item.name)}
                       </MenuItem>
                     )
                   })}
                 </Select>
                 <br />
-                <Button className={classes.margin}>Cancel</Button>
+                <Button component={Link} to='/user' className={classes.margin}>Cancel</Button>
 
-                <Button className={classes.margin}>Add Spice</Button>
+                <Button onClick={this.addSpice} className={classes.margin}>Add Spice</Button>
 
               </Card>
             </Grid>
