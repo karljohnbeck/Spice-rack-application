@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 
 // material ui 
-import { withStyles, Grid, Select, Button, Card, TextField } from '@material-ui/core';
+import { MenuItem, withStyles, Grid, Select, Button, Card, TextField } from '@material-ui/core';
 
 const styles = {
   gridContainer: {
@@ -65,57 +65,39 @@ class UserPage extends Component {
         >
           <Grid item xs={5}>
             <Card >
-            <TextField className={classes.margin} id="filled-basic" label="title" variant="filled" />
+              <TextField className={classes.margin} id="filled-basic" label="title" variant="filled" />
               <br />
               <Button component={Link} to='/addspice' className={classes.margin}>+ Add a spice</Button>
               {/* Needs to be multi select eventually */}
-              <Select className={classes.margin} value={0} ></Select>
+              <Select className={classes.margin}
+                value={[]}
+                onChange={this.handleChange}
+                inputProps={{
+                  name: 'list',
+                  id: 'category-simple',
+                }}
+                multiple>
+                {this.props.store.uniqueCategories.map((item, i) => {
+                  return (
+                    <MenuItem key={i} value={item.id} >
+                      {String(item.name)}
+                    </MenuItem>
+                  )
+                })}
+              </Select>
             </Card>
           </Grid>
         </Grid>
 
         {this.props.store.spiceList.map((spice, i) => {
           return (
-            <Grid item xs={6}>
-              <SpiceList key={i} spice={spice.name} spiceId={spice.id} />
+            <Grid key={i} item xs={6}>
+              <SpiceList spice={spice.name} spiceId={spice.id} />
             </Grid>
           )
         })}
 
       </Grid>
-
-        // {/* <Grid item xs={6}>
-        //   <Card className={classes.card}>
-        //     <CardContent>
-        //       <Typography variant="h5" component="h2">
-        //         Japanease Curry Powder
-        //       </Typography>
-
-        //       <br />
-
-        //       <Typography variant="h5" component="h2">
-        //         Japanease Curry Powder
-        //       </Typography>
-        //     </CardContent>
-        //   </Card>
-        // </Grid>
-        // <Grid item xs={6} >
-        //   <Card className={classes.card}>
-        //     <CardActions className={classes.cardAction}>
-        //       <Button size="small">Learn More</Button>
-        //     </CardActions>
-        //     <br />
-        //     <CardActions className={classes.cardAction}>
-        //       <Button size="small">Learn More</Button>
-        //     </CardActions>
-        //     <br />
-
-        //     <CardActions className={classes.cardAction}>
-        //       <Button size="small">Learn More</Button>
-        //     </CardActions> 
-        //     </Card>
-        //             </Grid>
-        //      */}
     );
   }
 }

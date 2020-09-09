@@ -18,8 +18,23 @@ function* fetchSpiceList() {
   }
 }
 
+function* deleteSpice(action) {
+  try {
+   
+    yield axios.delete(`/api/spicelist/${action.payload}`);
+    // now that the session has given us a user object
+    // with an id and username set the client-side user object to let
+    // the client-side code know the user is logged in
+    yield put({ type: 'FETCH_SPICELIST',});
+} catch (error) {
+  console.log('SpiceList delete request failed', error);
+}
+}
+
 function* spiceListSaga() {
   yield takeLatest('FETCH_SPICELIST', fetchSpiceList);
-}
+  yield takeLatest('DELETE_SPICE', deleteSpice);
+  }
+
 
 export default spiceListSaga;

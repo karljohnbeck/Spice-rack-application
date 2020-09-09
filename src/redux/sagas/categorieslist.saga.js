@@ -14,6 +14,13 @@ function* fetchSpiceList() {
     // with an id and username set the client-side user object to let
     // the client-side code know the user is logged in
     yield put({ type: 'SET_CATEGORIES', payload: response.data });
+
+    //AFTER we have al the categories, some drop downs unique categories,
+    // so this these store unique categories in a reducer. 
+    const uniq = yield {}
+    const arrFiltered = yield response.data.filter(obj => !uniq[obj.id] && (uniq[obj.id] = true));
+    yield put ({ type: 'SET_UNIQUE_CATEGORIES', payload: arrFiltered})
+    
   } catch (error) {
     console.log('SpiceList get request failed', error);
   }

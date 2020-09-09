@@ -50,6 +50,11 @@ class SpiceList extends Component {
         })
     }
 
+    deleteSpice = () => {
+        console.log('woo')
+    this.props.dispatch({type: 'DELETE_SPICE', payload: this.props.spiceId})
+    }
+
     render() {
         const { classes } = this.props;
         return (
@@ -65,10 +70,7 @@ class SpiceList extends Component {
                             <br />
 
                             {this.props.store.categoriesList.map((category, i) => {
-                                console.log(this.props.spiceID)
-
                                 if (this.props.spiceId === category.spice_id) {
-                                    console.log(category.name)
                                     return (
                                         <Typography key={i} component="p">
                                             {category.name}
@@ -89,7 +91,7 @@ class SpiceList extends Component {
                         </CardActions>
                         <br />
                         <CardActions className={classes.cardAction}>
-                            <Button size="small">Delete</Button>
+                            <Button onClick={this.deleteSpice} size="small">Delete</Button>
                         </CardActions>
                     </Card>
                 }

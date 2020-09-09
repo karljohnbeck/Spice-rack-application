@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { Link } from 'react-router-dom';
 
-
 // material ui 
 import { InputLabel, MenuItem, Input, withStyles, Grid, Select, Button, Card, TextField } from '@material-ui/core';
 
@@ -36,10 +35,6 @@ const styles = {
   },
 };
 
-
-
-
-
 // Basic class component structure for React with default state
 // value setup. When making a new component be sure to replace
 // the component name TemplateClass with the name for the new
@@ -51,17 +46,7 @@ class AddSpice extends Component {
     exp_date: null,
     categoryList: [],
     list: [],
-
   };
-
-  componentDidMount() {
-  
-    const uniq = {}
-    const categories = this.props.store.categoriesList
-    const arrFiltered = categories.filter(obj => !uniq[obj.id] && (uniq[obj.id] = true));
-    console.log('arrFiltered', arrFiltered)
-    this.setState({ categoryList: arrFiltered })
-  }
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -70,20 +55,15 @@ class AddSpice extends Component {
     console.log(event.target.value)
   }
 
-  addSpice = () =>  {
-
-    this.props.dispatch ({
+  addSpice = () => {
+    this.props.dispatch({
       type: 'ADD_SPICE',
       payload: {
         name: this.state.name,
         exp_date: this.state.exp_date,
-        categories_id: this.state.list, 
+        categories_id: this.state.list,
       }
     })
-  }
-
-  clearState = () => {
-
   }
 
   render() {
@@ -92,7 +72,6 @@ class AddSpice extends Component {
       <div>
         <h2>{this.state.heading}</h2>
         <Grid container spacing={32} className={classes.gridContainer} >
-
           <Grid
             container
             spacing={0}
@@ -102,22 +81,22 @@ class AddSpice extends Component {
           >
             <Grid item xs={5}>
               <Card >
-                <TextField onChange={this.handleChange} 
-                className={classes.margin} 
-                id="spice-name" 
-                label="Spice name" 
-                inputProps={{
-                  name: 'name',
-                  id: 'spice-name',
-              }}/>
+                <TextField onChange={this.handleChange}
+                  className={classes.margin}
+                  id="spice-name"
+                  label="Spice name"
+                  inputProps={{
+                    name: 'name',
+                    id: 'spice-name',
+                  }} />
                 <Input type='Date' className={classes.margin}
-                  variant="outlined" 
-                  id="exp-date" 
+                  variant="outlined"
+                  id="exp-date"
                   inputProps={{
                     name: 'exp_date',
                     id: 'exp-date',
-                }}
-                onChange={this.handleChange} />
+                  }}
+                  onChange={this.handleChange} />
                 <br />
                 {/* Needs to be multi select eventually */}
                 <InputLabel className={classes.margin} htmlFor="category-simple">Categories</InputLabel>
@@ -128,9 +107,9 @@ class AddSpice extends Component {
                   inputProps={{
                     name: 'list',
                     id: 'category-simple',
-                }}
+                  }}
                   multiple>
-                  {this.state.categoryList.map((item, i) => {
+                  {this.props.store.uniqueCategories.map((item, i) => {
                     return (
                       <MenuItem key={i} value={item.id} >
                         {String(item.name)}
