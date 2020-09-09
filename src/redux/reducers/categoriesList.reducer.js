@@ -1,6 +1,6 @@
-const spiceListReducer = (state = [], action) => {
+const categoriesListReducer = (state = [], action) => {
     switch (action.type) {
-      case 'SET_SPICELIST':
+      case 'SET_CATEGORIES':
         return action.payload;
       case 'UNSET_USER':
         return [];
@@ -11,5 +11,4 @@ const spiceListReducer = (state = [], action) => {
   
   // user will be on the redux state at:
   // state.user
-  export default spiceListReducer;
-  
+  export default categoriesListReducer;

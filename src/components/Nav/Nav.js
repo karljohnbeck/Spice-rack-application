@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { Menu, MenuItem, Button } from '@material-ui/core'
@@ -41,7 +40,7 @@ const Nav = (props) => {
           aria-haspopup="true"
           onClick={handleClick}
         >
-          <img className='hamburgerMenu' src={hamburger} />
+          <img alt="menu" className='hamburgerMenu' src={hamburger} />
       </Button>
       )}
         <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
@@ -64,9 +63,13 @@ const Nav = (props) => {
           <MenuItem onClick={handleClose} component={Link} to="/about">
             About
       </MenuItem>
-          <MenuItem  onClick={handleClose} onClick={ () => props.dispatch({ type: 'LOGOUT' })}>
+
+        <MenuItem className='delete' 
+          onClick={ () => {
+          handleClose()
+          props.dispatch({ type: 'LOGOUT' })}}>
             Logout
-      </MenuItem>
+        </MenuItem>
         </Menu>
 
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { Link } from 'react-router-dom';
 
-import { Input, withStyles, Grid, Select, Typography, Button, CardContent, CardActions, Card } from '@material-ui/core';
+import { withStyles, Typography, Button, CardContent, CardActions, Card } from '@material-ui/core';
 
 const styles = {
     gridContainer: {
@@ -12,7 +12,7 @@ const styles = {
     },
     card: {
         minHeight: '200px',
-        minHeight: '200px',
+        maxHeight: '200px',
 
     },
     cardAction: {
@@ -56,33 +56,42 @@ class SpiceList extends Component {
             <div>
 
                 {this.state.isSpice ?
-                        <Card onClick={this.toggleState} className={classes.card}>
-                            <CardContent>
-                                <Typography variant="h5" component="h2">
-                                    Japanease Curry Powder
-                                </Typography>
+                    <Card onClick={this.toggleState} className={classes.card}>
+                        <CardContent>
+                            <Typography variant="h5" component="h2">
+                                {this.props.spice}
+                            </Typography>
 
-                                <br />
+                            <br />
 
-                                <Typography variant="h5" component="h2">
-                                    Categories List
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                :
-                        <Card onClick={this.toggleState} className={classes.card}>
-                            <CardActions className={classes.cardAction}>
-                                <Button component={Link} to='/recipe' size="small">Recipes</Button>
-                            </CardActions>
-                            <br />
-                            <CardActions className={classes.cardAction}>
-                                <Button component={Link} to='/editspice' size="small">Edit Spice</Button>
-                            </CardActions>
-                            <br />
-                            <CardActions className={classes.cardAction}>
-                                <Button  size="small">Delete</Button>
-                            </CardActions>
-                        </Card>
+                            {this.props.store.categoriesList.map((category, i) => {
+                                console.log(this.props.spiceID)
+
+                                if (this.props.spiceId === category.spice_id) {
+                                    console.log(category.name)
+                                    return (
+                                        <Typography key={i} component="p">
+                                            {category.name}
+                                        </Typography>
+                                    )
+                                }
+                            })}
+                        </CardContent>
+                    </Card>
+                    :
+                    <Card onClick={this.toggleState} className={classes.card}>
+                        <CardActions className={classes.cardAction}>
+                            <Button component={Link} to='/recipe' size="small">Recipes</Button>
+                        </CardActions>
+                        <br />
+                        <CardActions className={classes.cardAction}>
+                            <Button component={Link} to='/editspice' size="small">Edit Spice</Button>
+                        </CardActions>
+                        <br />
+                        <CardActions className={classes.cardAction}>
+                            <Button size="small">Delete</Button>
+                        </CardActions>
+                    </Card>
                 }
             </div>
         );
@@ -90,6 +99,5 @@ class SpiceList extends Component {
 }
 
 const styleSpiceList = withStyles(styles)(SpiceList)
-
 
 export default connect(mapStoreToProps)(styleSpiceList);
