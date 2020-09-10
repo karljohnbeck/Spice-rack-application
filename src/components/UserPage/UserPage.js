@@ -34,7 +34,7 @@ const styles = {
     marginBottom: 12,
   },
   margin: {
-    margin: '15px',
+    margin: '10px',
   },
 };
 
@@ -59,7 +59,7 @@ class UserPage extends Component {
         </Grid>
         <Grid
           container
-          spacing={0}
+          spacing={12}
           direction="column"
           alignItems="center"
           justify="center"
@@ -90,13 +90,23 @@ class UserPage extends Component {
           </Grid>
         </Grid>
 
+        <Grid
+        
+          container
+          spacing={12}
+          align="center"       
+          justify="center"
+        >
         {this.props.store.spiceList.map((spice, i) => {
           return (
-            <Grid key={i} item xs={6}>
+            <Grid         
+            className={classes.margin}
+            key={i} item xs={5}>
               <SpiceList spice={spice} />
             </Grid>
           )
         })}
+            </Grid>
 
       </Grid>
     );

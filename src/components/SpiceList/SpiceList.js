@@ -44,6 +44,10 @@ const styles = {
     margin: {
         margin: '15px',
     },
+    button: {
+        width: '70px',
+        height: '60px'
+    }
 };
 
 // Basic class component structure for React with default state
@@ -77,7 +81,7 @@ class SpiceList extends Component {
             <div>
 
                 {this.state.isSpice ?
-                    <Card onClick={this.toggleState} className={classes.card}>
+                    <Card align="center" onClick={this.toggleState} className={classes.card}>
                         <CardContent>
                             <Typography justify="center" variant="h5" component="h2">
                                 {this.props.spice.name}
@@ -97,21 +101,21 @@ class SpiceList extends Component {
                         </CardContent>
                     </Card>
                     :
-                    <Card className={classes.card} >
+                    <Card align="center" className={classes.card} >
                         <CardActions className={classes.cardAction}>
-                            <Button component={Link} to='/recipe' variant="outlined" color="primary" >Recipes</Button>
+                            <Button className={classes.button} component={Link} to='/recipe' variant="outlined" color="primary" >Recipes</Button>
                         </CardActions>
                         <CardActions className={classes.cardAction}>
                             {/* <Button onClick={this.editingSpice} component={Link} to={'/editspice/' + spice_id} size="small">Edit Spice</Button> */}
                             <Overlay spice={this.props.spice}/>
                             {/* <Button onClick={() => this.props.history.push('/editspice/' + spice_id)} size="small">Edit Spice</Button> */}
-                        </CardActions>
+                        </CardActions >
                         <br />
                         <CardActions className={classes.cardAction}>
-                            <Button onClick={this.deleteSpice} variant="outlined" color="primary" >Delete</Button>
+                            <Button className={classes.button} onClick={this.deleteSpice} variant="outlined" color="primary" >Delete</Button>
                         </CardActions>
                         <CardActions className={classes.cardAction}>
-                            <Button onClick={this.toggleState} variant="outlined" color="primary" >Cancel</Button>
+                            <Button className={classes.button} onClick={this.toggleState} variant="outlined" color="primary" >Cancel</Button>
                         </CardActions>
                     </Card>               
                 }                                 

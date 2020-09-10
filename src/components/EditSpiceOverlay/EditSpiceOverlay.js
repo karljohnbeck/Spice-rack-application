@@ -4,12 +4,19 @@ import { withRouter, Link } from 'react-router-dom';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import moment from 'moment';
 
+import { withStyles } from '@material-ui/core/styles';
 import {
     Button, TextField, Dialog, DialogActions,
     DialogContent, DialogContentText, DialogTitle, Input,
     InputLabel, Select, MenuItem
 } from '@material-ui/core';
 
+const styles = { 
+    button: {
+        width: '70px',
+        height: '60px'
+    }
+}
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -32,6 +39,8 @@ function OverlayEditButton(props) {
 
         setOpen(true);
     };
+    const { classes } = props;
+
 
     const handleClose = () => {
         setName(props.spice.name)
@@ -62,7 +71,7 @@ function OverlayEditButton(props) {
 
     return (
         <div>
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+            <Button className={classes.button} variant="outlined" color="primary" onClick={handleClickOpen}>
                 Edit
             </Button>
 
@@ -126,6 +135,8 @@ function OverlayEditButton(props) {
     );
 }
 
-const withRouteEditOverlay = withRouter(OverlayEditButton)
+const withStyleEditOverlay = withStyles(styles)(OverlayEditButton)
+
+const withRouteEditOverlay = withRouter(withStyleEditOverlay)
 
 export default connect(mapStoreToProps)(withRouteEditOverlay);
