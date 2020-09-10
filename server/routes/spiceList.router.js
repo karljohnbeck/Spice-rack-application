@@ -69,4 +69,27 @@ router.delete('/:id', (req,res)=> {
     })
 })
 
+// PUT REQUEST
+router.put('/:id', (req,res) => {
+    let id = req.params.id
+    const queryText = 
+    `BEGIN;
+
+    UPDATE "spices"
+    SET "name" = $1, "exp_date = $2"
+    WHERE "id" = $3;
+
+    DELETE FROM "spices_categories"
+    WHERE "id" = $4;
+
+    COMMIT;`
+
+    pool.query(queryText, [req.body.name, req.body.req.params.id])
+    .then (result => {
+        res.sendStatus(200)
+    }) .catch(error => {
+        res.sendStatus(500)
+    })
+})
+
 module.exports = router;

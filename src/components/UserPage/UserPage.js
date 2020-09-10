@@ -20,6 +20,7 @@ const styles = {
   },
   cardAction: {
     backgroundColor: 'yellow',
+    
   },
   bullet: {
     display: 'inline-block',
@@ -33,7 +34,7 @@ const styles = {
     marginBottom: 12,
   },
   margin: {
-    margin: '15px'
+    margin: '15px',
   },
 };
 
@@ -50,8 +51,8 @@ class UserPage extends Component {
     const { classes } = this.props;
 
     return (
-      <Grid container spacing={32} className={classes.gridContainer} >
-        <Grid item xs={12}>
+      <Grid container spacing={16} className={classes.gridContainer} >
+        <Grid item xs={32}>
 
           <h1 id="welcome">Welcome, {this.props.store.user.username}!</h1>
 
@@ -63,7 +64,7 @@ class UserPage extends Component {
           alignItems="center"
           justify="center"
         >
-          <Grid item xs={5}>
+          <Grid item xs={6}>
             <Card >
               <TextField className={classes.margin} id="filled-basic" label="Search by name" variant="filled" />
               <br />

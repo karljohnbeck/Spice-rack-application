@@ -2,24 +2,18 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 
-function* storeSpiceForEdit(action) {
+function* editSpice(action) {
   try{
-    const response = yield axios.get('/api/spicelist');
-    let uniq = yield {}
-    yield response.data.map((spice, i) => {
-        console.log(spice)
-        if (spice.id == action.payload) {
-            uniq = spice
-        }
-    })  
-    yield put({ type: 'STORE_SPICE_FOR_EDIT', payload: uniq});
+    yield axios.put(`/api/spicelist/${action.payload.id}`, action.payload);
+    yield put({ type: 'FETCH_SPICELIST',});
+    yield put({ type: 'FETCH_CATEGORIES',});
   } catch (error) {
     console.log('error in storeSpiceForEdit', error)
   }
 }
 
 function* editSpiceSaga() {
-  yield takeLatest('STORE_CLICKED_SPICE', storeSpiceForEdit)
+  yield takeLatest('EDIT_SPICE', editSpice)
   }
 
 export default editSpiceSaga;

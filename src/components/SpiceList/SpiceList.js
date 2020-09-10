@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { Link, withRouter  } from 'react-router-dom';
 
-
 import { withStyles, Typography, Button, CardContent, CardActions, Card } from '@material-ui/core';
+
+import Overlay from '../EditSpiceOverlay/EditSpiceOverlay'
 
 const styles = {
     gridContainer: {
@@ -14,13 +15,23 @@ const styles = {
     card: {
         minHeight: '200px',
         maxHeight: '200px',
+        maxWidth: '300px',
+        padding: '10px',
+        justifyContent: "center"
+
+        
+
 
     },
     cardAction: {
         backgroundColor: 'yellow',
+        display: 'inline-block',
+        margin: '5px',
+        textAlign: 'center',
+
     },
     bullet: {
-        display: 'inline-block',
+        // display: 'inline-block',
         margin: '0 2px',
         transform: 'scale(0.8)',
     },
@@ -31,7 +42,7 @@ const styles = {
         marginBottom: 12,
     },
     margin: {
-        margin: '15px'
+        margin: '15px',
     },
 };
 
@@ -68,7 +79,7 @@ class SpiceList extends Component {
                 {this.state.isSpice ?
                     <Card onClick={this.toggleState} className={classes.card}>
                         <CardContent>
-                            <Typography variant="h5" component="h2">
+                            <Typography justify="center" variant="h5" component="h2">
                                 {this.props.spice.name}
                             </Typography>
 
@@ -86,22 +97,25 @@ class SpiceList extends Component {
                         </CardContent>
                     </Card>
                     :
-                    <Card onClick={this.toggleState} className={classes.card}>
+                    <Card className={classes.card} >
                         <CardActions className={classes.cardAction}>
-                            <Button component={Link} to='/recipe' size="small">Recipes</Button>
+                            <Button component={Link} to='/recipe' variant="outlined" color="primary" >Recipes</Button>
                         </CardActions>
-                        <br />
                         <CardActions className={classes.cardAction}>
                             {/* <Button onClick={this.editingSpice} component={Link} to={'/editspice/' + spice_id} size="small">Edit Spice</Button> */}
-                            <Button onClick={() => this.props.history.push('/editspice/' + spice_id)} size="small">Edit Spice</Button>
-
+                            <Overlay spice={this.props.spice}/>
+                            {/* <Button onClick={() => this.props.history.push('/editspice/' + spice_id)} size="small">Edit Spice</Button> */}
                         </CardActions>
                         <br />
                         <CardActions className={classes.cardAction}>
-                            <Button onClick={this.deleteSpice} size="small">Delete</Button>
+                            <Button onClick={this.deleteSpice} variant="outlined" color="primary" >Delete</Button>
                         </CardActions>
-                    </Card>
-                }
+                        <CardActions className={classes.cardAction}>
+                            <Button onClick={this.toggleState} variant="outlined" color="primary" >Cancel</Button>
+                        </CardActions>
+                    </Card>               
+                }                                 
+
             </div>
         );
     }
