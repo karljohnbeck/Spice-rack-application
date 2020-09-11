@@ -93,7 +93,6 @@ function OverlayEditButton(props) {
                         fullWidth
                         onChange={handleNameChange}
                     />
-
                     {/* // DATE */}
                     <TextField type='Date'
                         label="Expiration Date"

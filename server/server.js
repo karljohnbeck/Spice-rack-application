@@ -10,8 +10,9 @@ const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
-const spiceListRouter = require('./routes/spiceList.router')
-const categoriesListRouter = require('./routes/categoriesList.router')
+const spiceListRouter = require('./routes/spiceList.router');
+const categoriesListRouter = require('./routes/categoriesList.router');
+const uniqueCategoriesRouter = require('./routes/UniqueCategories.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -28,6 +29,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/spicelist', spiceListRouter)
 app.use('/api/categorieslist', categoriesListRouter)
+app.use('/api/uniquecategories', uniqueCategoriesRouter)
 
 // Serve static files
 app.use(express.static('build'));

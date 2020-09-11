@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 import { Link } from 'react-router-dom';
+import EditCategory from '../EditCategory/EditCategory'
 
 // material ui 
-import { InputLabel, MenuItem, Input, withStyles, Grid, Select, Button, Card, TextField } from '@material-ui/core';
+import { Typography, InputLabel, MenuItem, Input, withStyles, Grid, Select, Button, Card, TextField } from '@material-ui/core';
 
 const styles = {
   gridContainer: {
@@ -13,9 +14,8 @@ const styles = {
     paddingRight: '10px',
   },
   card: {
-    minHeight: '300px',
-    maxHeight: '300px',
-    minWidth: '300px'
+
+    minWidth: '400px'
   },
   cardAction: {
     backgroundColor: 'yellow',
@@ -43,6 +43,12 @@ const styles = {
 class Categories extends Component {
   state = {
     heading: 'Categories Component',
+    isEdit: true,
+    name:  "",
+  };
+
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
@@ -50,7 +56,7 @@ class Categories extends Component {
     return (
 
       <div>
-        <Grid container spacing={32} className={classes.gridContainer} >
+        <Grid justify="center" container spacing={32} className={classes.gridContainer} >
           <Grid
             container
             spacing={0}
@@ -60,20 +66,32 @@ class Categories extends Component {
           >
             <Grid item xs={5} align="center">
               <Card className={classes.card} >
+                <Typography variant="h5" component="h2">
+                  Add a category
+                </Typography>
                 <TextField onChange={this.handleChange}
                   className={classes.margin}
                   id="spice-name"
-                  label="Spice name"
+                  label="Category name"
                   inputProps={{
                     name: 'name',
                     id: 'spice-name',
                   }} />
-
+                <br />
                 <Button component={Link} to='/user' className={classes.margin}>Cancel</Button>
-
-                <Button onClick={console.log('woo')} className={classes.margin}>Add Spice</Button>
-
+                <Button onClick={console.log('woo')} className={classes.margin}>Add Category</Button>
               </Card>
+
+              <h2>Manage Categories</h2>
+              {this.props.store.uniqueCategories.map((category, i) => {
+                return (
+                  <div key={i}>
+                  <br />
+                  <EditCategory  category={category} />
+                  </ div>
+                )
+              })}
+
             </Grid>
           </Grid>
         </Grid>

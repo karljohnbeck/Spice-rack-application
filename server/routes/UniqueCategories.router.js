@@ -9,7 +9,19 @@ const {
  * GET route template
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
-  // GET route code here
+    console.log('req.user', req.user.id);
+    let queryText = 
+    `SELECT * FROM "categories"
+WHERE  "categories".user_id = $1;`
+    pool.query(queryText, [req.user.id])
+        .then(result => {
+            res.send(result.rows)
+        })
+        .catch(error => {
+            console.log('error in categories get request', error);
+            res.sendStatus(500);
+        })
+
 });
 
 /**

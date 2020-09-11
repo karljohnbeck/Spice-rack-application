@@ -32,6 +32,7 @@ class App extends Component {
     this.props.dispatch({ type: 'FETCH_USER' });
     this.props.dispatch({type: 'FETCH_SPICELIST'});
     this.props.dispatch({type: 'FETCH_CATEGORIES'});
+    this.props.dispatch({type: 'FETCH_UNIQUE_CATEGORIES'})
   }
 
   render() {
