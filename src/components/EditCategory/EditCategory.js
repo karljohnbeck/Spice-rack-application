@@ -70,6 +70,9 @@ toggleStatePlus = () => {
         name: this.props.category.name,
     })
 }
+deleteCategory = () => {
+    this.props.dispatch({type: 'DELETE_CATEGORY', payload: this.props.category.id})
+}
 
   render() {
     const { classes } = this.props;
@@ -81,7 +84,7 @@ toggleStatePlus = () => {
               <Typography justify="center" variant="h4" className={classes.text}>
               {this.props.category.name}  
               </Typography>           
-               <img className={classes.img} src={deleteIcon} alt="delete"/>
+               <img className={classes.img} onClick={this.deleteCategory} src={deleteIcon} alt="delete"/>
               <img className={classes.img} onClick={this.toggleState} alt="edit" src={editIcon}/>
 
           </div> 
