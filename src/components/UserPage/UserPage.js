@@ -91,7 +91,6 @@ class UserPage extends Component {
         </Grid>
 
         <Grid
-        
           container
           spacing={12}
           align="center"       

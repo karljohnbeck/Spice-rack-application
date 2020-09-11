@@ -70,7 +70,6 @@ class AddSpice extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <h2>{this.state.heading}</h2>
         <Grid container spacing={32} className={classes.gridContainer} >
           <Grid
             container

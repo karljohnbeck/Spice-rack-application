@@ -55,8 +55,8 @@ const Nav = (props) => {
 
           {props.store.user.id && (
 
-            <MenuItem onClick={handleClose} component={Link} to="/info">
-              Info
+            <MenuItem onClick={handleClose} component={Link} to="/categories">
+              Categories
             </MenuItem>
 
           )}
