@@ -51,6 +51,11 @@ class Categories extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  addCategory = () => {
+    this.props.dispatch({type: 'POST_CATEGORY', payload: this.state})
+    this.setState({name: ''})
+  }
+
   render() {
     const { classes } = this.props;
     return (
@@ -73,13 +78,14 @@ class Categories extends Component {
                   className={classes.margin}
                   id="spice-name"
                   label="Category name"
+                  value={this.state.name}
                   inputProps={{
                     name: 'name',
                     id: 'spice-name',
                   }} />
                 <br />
                 <Button component={Link} to='/user' className={classes.margin}>Cancel</Button>
-                <Button onClick={console.log('woo')} className={classes.margin}>Add Category</Button>
+                <Button onClick={this.addCategory} className={classes.margin}>Add Category</Button>
               </Card>
 
               <h2>Manage Categories</h2>
