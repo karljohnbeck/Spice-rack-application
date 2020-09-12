@@ -52,8 +52,12 @@ class Categories extends Component {
   };
 
   addCategory = () => {
+    if (this.state.name === "") {
+      alert('no')
+    } else {
     this.props.dispatch({type: 'POST_CATEGORY', payload: this.state})
     this.setState({name: ''})
+  }
   }
 
   render() {
@@ -62,19 +66,20 @@ class Categories extends Component {
 
       <div>
         <Grid justify="center" container spacing={32} className={classes.gridContainer} >
-          <Grid
-            container
-            spacing={0}
-            direction="column"
-            alignItems="center"
-            justify="center"
-          >
-            <Grid item xs={5} align="center">
+        <Grid
+          container
+          spacing={12}
+          direction="column"
+          alignItems="center"
+          justify="center"
+        >
+            <Grid item xs={12} align="center">
               <Card className={classes.card} >
                 <Typography variant="h5" component="h2">
                   Add a category
                 </Typography>
                 <TextField onChange={this.handleChange}
+                variant="filled"
                   className={classes.margin}
                   id="spice-name"
                   label="Category name"
@@ -84,8 +89,8 @@ class Categories extends Component {
                     id: 'spice-name',
                   }} />
                 <br />
-                <Button component={Link} to='/user' className={classes.margin}>Cancel</Button>
-                <Button onClick={this.addCategory} className={classes.margin}>Add Category</Button>
+                <Button variant="outlined" component={Link} to='/user' className={classes.margin}>Cancel</Button>
+                <Button variant="outlined" onClick={this.addCategory} className={classes.margin}>Add Category</Button>
               </Card>
 
               <h2>Manage Categories</h2>

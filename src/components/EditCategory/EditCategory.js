@@ -19,14 +19,16 @@ const styles = {
   },
   card: {
     
-    minWidth: '300px'
+    minWidth: '400px'
   },
   cardAction: {
     backgroundColor: 'yellow',
   },
   img: {
-    Width: '50px',
-    height: '50px',
+    Width: '45px',
+    height: '45px',
+    
+
     margin: '5px',
     float: 'right'
 
@@ -40,7 +42,7 @@ const styles = {
     marginBottom: 12,
   },
   margin: {
-    margin: '15px'
+    margin: '5px'
   },
 };
 
@@ -89,7 +91,7 @@ saveEdit = () => {
     const { classes } = this.props;
     return (
 
-      <Card>
+      <Card className={classes.card}>
           {this.state.isEdit ? 
           <div>
               <Typography justify="center" variant="h4" className={classes.text}>
@@ -102,19 +104,21 @@ saveEdit = () => {
           : 
           <div>
               <TextField
+              className={classes.margin}
+                        variant="filled"
                         autoFocus
                         name="name"
                         value={this.state.name}
                         margin="dense"
                         id="name"
-                        label="SpiceName"
+                        label="Category name"
                         type="text"
                         justify="center"
                         fullWidth
                         onChange={this.handleChange}
                     />
-                <Button onClick={this.toggleStatePlus}>Cancel</Button>
-                <Button onClick={this.saveEdit}>Save</Button>
+                <Button className={classes.margin} onClick={this.toggleStatePlus} variant="outlined">Cancel</Button>
+                <Button className={classes.margin} onClick={this.saveEdit} variant="outlined">Save</Button>
 
           </div>
   }

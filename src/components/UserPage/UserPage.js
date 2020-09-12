@@ -68,7 +68,7 @@ class UserPage extends Component {
             <Card >
               <TextField className={classes.margin} id="filled-basic" label="Search by name" variant="filled" />
               <br />
-              <Button component={Link} to='/addspice' className={classes.margin}>+ Add a spice</Button>
+              <Button variant="outlined" component={Link} to='/addspice' className={classes.margin}>+ Add a spice</Button>
               {/* Needs to be multi select eventually */}
               <Select className={classes.margin}
                 value={[]}

@@ -11,10 +11,13 @@ import {
     InputLabel, Select, MenuItem
 } from '@material-ui/core';
 
-const styles = { 
+const styles = {
     button: {
         width: '70px',
         height: '60px'
+    },
+    margin: {
+        margin: '5px'
     }
 }
 
@@ -60,14 +63,16 @@ function OverlayEditButton(props) {
         console.log(categories)
     }
     const handleEdit = () => {
-        props.dispatch({type: 'EDIT_SPICE',
-         payload: {
-            id: props.spice.id,
-            name: name,
-            exp_date: exp_date,
-            categories_id: categories,
-          } })
-          handleClose()
+        props.dispatch({
+            type: 'EDIT_SPICE',
+            payload: {
+                id: props.spice.id,
+                name: name,
+                exp_date: exp_date,
+                categories_id: categories,
+            }
+        })
+        handleClose()
     }
 
     return (
@@ -85,6 +90,8 @@ function OverlayEditButton(props) {
 
                     {/* // NAME */}
                     <TextField
+                        className={classes.margin}
+                        variant="filled"
                         autoFocus
                         value={name}
                         margin="dense"
@@ -96,6 +103,9 @@ function OverlayEditButton(props) {
                     />
                     {/* // DATE */}
                     <TextField type='Date'
+                        className={classes.margin}
+
+                        variant="filled"
                         label="Expiration Date"
                         fullWidth
                         id="exp-date"
@@ -108,8 +118,14 @@ function OverlayEditButton(props) {
                     />
 
                     {/* // CATEGORIES */}
-                    <InputLabel htmlFor="category-simple">Categories</InputLabel>
+                    <InputLabel
+                        className={classes.margin}
+                        htmlFor="category-simple"
+                    >
+                        Categories
+                    </InputLabel>
                     <Select
+                        className={classes.margin}
                         onChange={handleSelectChange}
                         value={categories}
                         multiple>
@@ -123,10 +139,10 @@ function OverlayEditButton(props) {
                     </Select>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} color="primary">
+                    <Button onClick={handleClose} variant="outlined" color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={handleEdit} color="primary">
+                    <Button onClick={handleEdit} variant="outlined" color="primary">
                         Save changes
                     </Button>
                 </DialogActions>
