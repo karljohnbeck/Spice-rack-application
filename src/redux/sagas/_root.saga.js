@@ -8,6 +8,7 @@ import addSpiceSaga from './addSpice.saga'
 import EditSpiceSaga from './EditSpice.saga'
 import addCategorySaga from './addCategory.saga'
 import deleteCategorySaga from './DeleteCategory.saga'
+import editCategorySaga from './editCategory.saga'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -26,6 +27,7 @@ export default function* rootSaga() {
     addSpiceSaga(),
     EditSpiceSaga(),
     addCategorySaga(),
-    deleteCategorySaga()
+    deleteCategorySaga(),
+    editCategorySaga(),
   ]);
 }

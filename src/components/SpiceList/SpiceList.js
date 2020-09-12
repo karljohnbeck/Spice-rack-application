@@ -104,10 +104,10 @@ class SpiceList extends Component {
                     <Card align="center" className={classes.card} >
                         <CardActions className={classes.cardAction}>
                             <Button className={classes.button} component={Link} to='/recipe' variant="outlined" color="primary" >Recipes</Button>
-                        </CardActions>
+                        </CardActions >
                         <CardActions className={classes.cardAction}>
                             {/* <Button onClick={this.editingSpice} component={Link} to={'/editspice/' + spice_id} size="small">Edit Spice</Button> */}
-                            <Overlay spice={this.props.spice}/>
+                            <Overlay toggleState={this.toggleState} spice={this.props.spice}/>
                             {/* <Button onClick={() => this.props.history.push('/editspice/' + spice_id)} size="small">Edit Spice</Button> */}
                         </CardActions >
                         <br />

@@ -74,6 +74,17 @@ deleteCategory = () => {
     this.props.dispatch({type: 'DELETE_CATEGORY', payload: this.props.category.id})
 }
 
+saveEdit = () => {
+    console.log(this.state.name)
+    this.props.dispatch(
+        {type: 'EDIT_CATEGORY', 
+        payload: {
+            id: this.props.category.id,
+            name: this.state.name
+        }})
+        this.toggleState()
+}
+
   render() {
     const { classes } = this.props;
     return (
@@ -103,6 +114,8 @@ deleteCategory = () => {
                         onChange={this.handleChange}
                     />
                 <Button onClick={this.toggleStatePlus}>Cancel</Button>
+                <Button onClick={this.saveEdit}>Save</Button>
+
           </div>
   }
       </Card>

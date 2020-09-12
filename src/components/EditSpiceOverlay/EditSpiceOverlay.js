@@ -45,6 +45,7 @@ function OverlayEditButton(props) {
     const handleClose = () => {
         setName(props.spice.name)
         setExpDate(props.spice.exp_date)
+        props.toggleState()
         setOpen(false);
     };
 
