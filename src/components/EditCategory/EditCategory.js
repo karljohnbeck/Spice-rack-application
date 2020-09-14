@@ -5,7 +5,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter, Link } from 'react-router-dom';
 
 // material ui 
-import { Typography, InputLabel, MenuItem, Input, withStyles, Grid, Select, Button, Card, TextField } from '@material-ui/core';
+import { Typography, withStyles, Button, Card, TextField } from '@material-ui/core';
 
 import editIcon from './Icons/edit.png'
 import deleteIcon from './Icons/trash.png'

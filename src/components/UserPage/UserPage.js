@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom';
 
 
 // material ui 
-import { MenuItem, withStyles, Grid, Select, Button, Card, TextField } from '@material-ui/core';
+import { Typography, MenuItem, withStyles, Grid, Select, Button, Card, TextField } from '@material-ui/core';
+
+let hasCategory = false
 
 const styles = {
   gridContainer: {
@@ -20,7 +22,7 @@ const styles = {
   },
   cardAction: {
     backgroundColor: 'yellow',
-    
+
   },
   bullet: {
     display: 'inline-block',
@@ -31,10 +33,10 @@ const styles = {
     fontSize: 14,
   },
   pos: {
-    marginBottom: 12,
+    padding: '15px',
   },
   margin: {
-    margin: '10px',
+    margin: '5px',
   },
 };
 
@@ -47,37 +49,60 @@ class UserPage extends Component {
 
   }
 
+  state = {
+    searchCriteria: '',
+    categorySelected: 0,
+    hasCategory: false,
+  }
+
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  differentSearch = (event) => {
+    this.setState({ searchCriteria: event.target.value })
+    console.log(this.state)
+  }
+
   render() {
     const { classes } = this.props;
 
     return (
-      <Grid container spacing={16} className={classes.gridContainer} >
-        <Grid item xs={32}>
+      <Grid container spacing={32} className={classes.gridContainer} >
+        {/* <Grid item xs={12}>
 
           <h1 id="welcome">Welcome, {this.props.store.user.username}!</h1>
 
-        </Grid>
+        </Grid> */}
         <Grid
           container
-          spacing={12}
+          spacing={16}
           direction="column"
           alignItems="center"
           justify="center"
         >
           <Grid item xs={6}>
-            <Card >
-              <TextField className={classes.margin} id="filled-basic" label="Search by name" variant="filled" />
+            <Card className={classes.pos}>
+              <Typography
+                align="center"
+                justify="center"
+                variant="h5"
+                className={classes.margin}>
+                Spice filter:
+            </Typography>
+              <TextField onChange={this.differentSearch} className={classes.margin} id="filled-basic" label="Search by name" variant="filled" />
               <br />
-              <Button variant="outlined" component={Link} to='/addspice' className={classes.margin}>+ Add a spice</Button>
-              {/* Needs to be multi select eventually */}
               <Select className={classes.margin}
-                value={[]}
+                value={this.state.categorySelected}
                 onChange={this.handleChange}
                 inputProps={{
-                  name: 'list',
+                  name: 'categorySelected',
                   id: 'category-simple',
                 }}
-                multiple>
+              >
+                <MenuItem value={0} >
+                  All categories
+                    </MenuItem>
                 {this.props.store.uniqueCategories.map((item, i) => {
                   return (
                     <MenuItem key={i} value={item.id} >
@@ -87,25 +112,58 @@ class UserPage extends Component {
                 })}
               </Select>
             </Card>
+            <br />
+
+            <Card className={classes.pos}>
+              <Typography
+                align="center"
+                justify="center"
+                variant="h5"
+                className={classes.margin}>
+                Add a new spice
+                        </Typography>
+              <Button alignContent="center" justify="center" variant="outlined" component={Link} to='/addspice' className={classes.margin}>+ Add a spice</Button>
+            </Card>
           </Grid>
         </Grid>
 
         <Grid
           container
-          spacing={12}
-          align="center"       
+          spacing={16}
+          align="center"
           justify="center"
         >
-        {this.props.store.spiceList.map((spice, i) => {
-          return (
-            <Grid         
-            className={classes.margin}
-            key={i} item xs={5}>
-              <SpiceList spice={spice} />
-            </Grid>
-          )
-        })}
-            </Grid>
+          {this.props.store.spiceList.filter((spice) => {
+
+            (spice.cat_list.map((category) => { if (category === this.state.categorySelected) { hasCategory = true; console.log(hasCategory); return true } }))
+
+            if (this.state.searchCriteria === '' && this.state.categorySelected === 0) {
+              hasCategory = false;
+              return spice
+            }
+            else if (
+              spice.name.toLowerCase().includes(this.state.searchCriteria.toLowerCase()) && hasCategory === true
+              ||
+              spice.name.toLowerCase().includes(this.state.searchCriteria.toLowerCase()) && this.state.categorySelected === 0
+              ||
+              this.state.searchCriteria === '' && hasCategory === true
+            ) {
+              hasCategory = false;
+              return spice
+            }
+          }).map((spice, i) => {
+
+            return (
+              <Grid
+                className={classes.margin}
+                key={i} item xs={8} xl={3}>
+                <SpiceList spice={spice} />
+              </Grid>
+
+            )
+
+          })}
+        </Grid>
 
       </Grid>
     );

@@ -10,8 +10,15 @@ const {
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('req.user', req.user.id);
-    let queryText = `SELECT * FROM "spices"
-WHERE "spices".user_id = $1`;
+//     let queryText = `SELECT * FROM "spices"
+// WHERE "spices".user_id = $1`;
+
+let queryText = `SELECT spices.name, spices.exp_date, spices.id, spices.img_url, spices.user_id, array_remove(array_agg("categories".id), NULL) AS cat_list
+FROM "spices"
+LEFT JOIN "spices_categories" ON "spices".id = "spices_categories".spices_id
+LEFT JOIN "categories" ON "categories".id = "spices_categories".categories_id
+WHERE "spices".user_id = $1
+GROUP BY "spices".id; `
     pool.query(queryText, [req.user.id])
         .then(result => {
             res.send(result.rows)

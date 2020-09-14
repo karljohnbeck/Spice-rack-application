@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import { Link, withRouter  } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import { withStyles, Typography, Button, CardContent, CardActions, Card } from '@material-ui/core';
 
@@ -13,27 +13,27 @@ const styles = {
         paddingRight: '10px',
     },
     card: {
-        minHeight: '200px',
-        maxHeight: '200px',
-        maxWidth: '300px',
+        minHeight: '150px',
+        maxHeight: '150px',
+        minWidth: '100px',
         padding: '10px',
         justifyContent: "center"
 
-        
-
-
+    },
+    cardPlus: {
+        minHeight: '200px',
+        maxHeight: '200px',
+        padding: '10px',
+        justifyContent: "center"
     },
     cardAction: {
-        backgroundColor: 'yellow',
         display: 'inline-block',
-        margin: '5px',
+        margin: '3px',
         textAlign: 'center',
-
     },
     bullet: {
-        // display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
+        marginLeft: '5%',
+        width: "90%",
     },
     title: {
         fontSize: 14,
@@ -45,8 +45,11 @@ const styles = {
         margin: '15px',
     },
     button: {
-        width: '70px',
-        height: '60px'
+        width: '42px',
+        height: '42px',
+        margin: '0',
+        fontSize: '15x'
+
     }
 };
 
@@ -67,7 +70,7 @@ class SpiceList extends Component {
     }
 
     deleteSpice = () => {
-    this.props.dispatch({type: 'DELETE_SPICE', payload: this.props.spice.id})
+        this.props.dispatch({ type: 'DELETE_SPICE', payload: this.props.spice.id })
     }
 
 
@@ -101,31 +104,33 @@ class SpiceList extends Component {
                         </CardContent>
                     </Card>
                     :
-                    <Card align="center" className={classes.card} >
-                        <CardActions className={classes.cardAction}>
-                            <Button className={classes.button} component={Link} to='/recipe' variant="outlined" color="primary" >Recipes</Button>
-                        </CardActions >
-                        <CardActions className={classes.cardAction}>
-                            {/* <Button onClick={this.editingSpice} component={Link} to={'/editspice/' + spice_id} size="small">Edit Spice</Button> */}
-                            <Overlay toggleState={this.toggleState} spice={this.props.spice}/>
-                            {/* <Button onClick={() => this.props.history.push('/editspice/' + spice_id)} size="small">Edit Spice</Button> */}
-                        </CardActions >
-                        <br />
-                        <CardActions className={classes.cardAction}>
-                            <Button className={classes.button} onClick={this.deleteSpice} variant="outlined" color="primary" >Delete</Button>
-                        </CardActions>
-                        <CardActions className={classes.cardAction}>
-                            <Button className={classes.button} onClick={this.toggleState} variant="outlined" color="primary" >Cancel</Button>
-                        </CardActions>
-                    </Card>               
-                }                                 
+                    <Card className={classes.card} >
+                        <CardContent>
+                            <CardActions className={classes.cardAction}>
+                                <Button className={classes.button} component={Link} to='/recipe' variant="outlined" color="primary" >Recipes</Button>
+                            </CardActions >
+                            <CardActions className={classes.cardAction}>
+                                {/* <Button onClick={this.editingSpice} component={Link} to={'/editspice/' + spice_id} size="small">Edit Spice</Button> */}
+                                <Overlay toggleState={this.toggleState} spice={this.props.spice} />
+                                {/* <Button onClick={() => this.props.history.push('/editspice/' + spice_id)} size="small">Edit Spice</Button> */}
+                            </CardActions >
+                            <br />
+                            <CardActions className={classes.cardAction}>
+                                <Button className={classes.button} onClick={this.deleteSpice} variant="outlined" color="primary" >Delete</Button>
+                            </CardActions>
+                            <CardActions className={classes.cardAction}>
+                                <Button className={classes.button} onClick={this.toggleState} variant="outlined" color="primary" >Cancel</Button>
+                            </CardActions>
+                        </CardContent>
+                    </Card>
+                }
 
             </div>
         );
     }
 }
 
-const withRouterSpiceList = withRouter(SpiceList) 
+const withRouterSpiceList = withRouter(SpiceList)
 
 const styleSpiceList = withStyles(styles)(withRouterSpiceList)
 

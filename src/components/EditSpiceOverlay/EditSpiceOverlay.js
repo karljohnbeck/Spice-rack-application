@@ -13,11 +13,11 @@ import {
 
 const styles = {
     button: {
-        width: '70px',
-        height: '60px'
+        width: '50px',
+        height: '40px'
     },
     margin: {
-        margin: '5px'
+        margin: '3px'
     }
 }
 

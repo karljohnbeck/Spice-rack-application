@@ -4,7 +4,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import { Link } from 'react-router-dom';
 
 // material ui 
-import { InputLabel, MenuItem, Input, withStyles, Grid, Select, Button, Card, TextField } from '@material-ui/core';
+import { Typography, InputLabel, MenuItem, Input, withStyles, Grid, Select, Button, Card, TextField } from '@material-ui/core';
 
 const styles = {
   gridContainer: {
@@ -70,16 +70,25 @@ class AddSpice extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <Grid container spacing={32} className={classes.gridContainer} >
-          <Grid
+        <Grid alignItems="center" justify="center" container spacing={32} className={classes.gridContainer} >
+          
+            <Grid
             container
-            spacing={0}
+            spacing={32}
             direction="column"
             alignItems="center"
             justify="center"
           >
-            <Grid item xs={5}>
-              <Card className={classes.card} >
+          
+            <Grid align="center" justify="center" item xl={32} xs={10}>
+              <Card  >
+                <Typography
+                  align="center"
+                  justify="center"
+                  variant="h5"
+                  className={classes.margin}>
+                  Add a new spice:
+              </Typography>
                 <TextField onChange={this.handleChange}
                   className={classes.margin}
                   id="spice-name"
@@ -88,7 +97,7 @@ class AddSpice extends Component {
                     name: 'name',
                     id: 'spice-name',
                   }} />
-                  <br/>
+                <br />
                 <Input type='Date' className={classes.margin}
                   variant="outlined"
                   id="exp-date"
