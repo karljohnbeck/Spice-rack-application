@@ -14,7 +14,7 @@ const styles = {
     },
     card: {
         minHeight: '150px',
-        maxHeight: '150px',
+        // maxHeight: '200px',
         minWidth: '100px',
         padding: '10px',
         justifyContent: "center"
@@ -48,7 +48,9 @@ const styles = {
         height: '40px',
         margin: '0',
         fontSize: '15x'
-
+    },
+    top: {
+        marginTop: '-10px'
     }
 };
 
@@ -85,17 +87,19 @@ class SpiceList extends Component {
                 {this.state.isSpice ?
                     <Card align="center" onClick={this.toggleState} className={classes.card}>
                         <CardContent>
-                            <Typography justify="center" variant="h5" component="h2">
+                            <Typography className={classes.top} justify="center" variant="h4" component="h1">
                                 {this.props.spice.name}
                             </Typography>
 
                             <br />
-
+                            <Typography justify="center" variant="h6" component="h2">
+                                Categories:
+                            </Typography>
                             {this.props.store.categoriesList.map((category, i) => {
                                 if (this.props.spice.id === category.spice_id) {
                                     return (
                                         <Typography key={i} component="p">
-                                            {category.name}
+                                           - {category.name}
                                         </Typography>
                                     )
                                 }
