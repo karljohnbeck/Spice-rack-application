@@ -19,7 +19,7 @@ const styles = {
     },
     card: {
         minHeight: '65px',
-        minWidth: '400px'
+        minWidth: '300px'
     },
     cardAction: {
         backgroundColor: 'yellow',

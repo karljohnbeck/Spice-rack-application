@@ -18,7 +18,6 @@ const styles = {
         minWidth: '100px',
         padding: '10px',
         justifyContent: "center"
-
     },
     cardPlus: {
         minHeight: '200px',
@@ -45,8 +44,8 @@ const styles = {
         margin: '15px',
     },
     button: {
-        width: '42px',
-        height: '42px',
+        width: '50px',
+        height: '40px',
         margin: '0',
         fontSize: '15x'
 

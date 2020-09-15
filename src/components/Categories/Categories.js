@@ -15,7 +15,6 @@ const styles = {
   },
   card: {
 
-    minWidth: '400px'
   },
   cardAction: {
     backgroundColor: 'yellow',
@@ -68,7 +67,7 @@ class Categories extends Component {
         <Grid justify="center" container spacing={32} className={classes.gridContainer} >
         <Grid
           container
-          spacing={12}
+          spacing={32}
           direction="column"
           alignItems="center"
           justify="center"

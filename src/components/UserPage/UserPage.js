@@ -125,6 +125,8 @@ class UserPage extends Component {
               <Button alignContent="center" justify="center" variant="outlined" component={Link} to='/addspice' className={classes.margin}>+ Add a spice</Button>
             </Card>
           </Grid>
+          <br />
+
         </Grid>
 
         <Grid

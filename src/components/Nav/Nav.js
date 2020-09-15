@@ -34,56 +34,65 @@ const Nav = (props) => {
       </Link>
       <div className="nav-right">
         <div className="hamburger">
-      {props.store.user.id && (
-        <Button
-          aria-owns={anchorEl ? 'simple-menu' : undefined}
-          aria-haspopup="true"
-          onClick={handleClick}
-        >
-          <img alt="menu" className='hamburgerMenu' src={hamburger} />
-      </Button>
-      )}
-        <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-
           {props.store.user.id && (
-
-            <MenuItem onClick={handleClose} component={Link} to='/home'>
-              Home
-            </MenuItem>
-
+            <Button
+              aria-owns={anchorEl ? 'simple-menu' : undefined}
+              aria-haspopup="true"
+              onClick={handleClick}
+            >
+              <img alt="menu" className='hamburgerMenu' src={hamburger} />
+            </Button>
           )}
+          <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
 
-          {props.store.user.id && (
+            {props.store.user.id && (
 
-            <MenuItem onClick={handleClose} component={Link} to="/categories">
-              Categories
-            </MenuItem>
+              <MenuItem onClick={handleClose} component={Link} to='/home'>
+                Home
+              </MenuItem>
 
-          )}
-          <MenuItem onClick={handleClose} component={Link} to="/about">
-            About
+            )}
+
+            {props.store.user.id && (
+
+              <MenuItem onClick={handleClose} component={Link} to="/categories">
+                Categories
+              </MenuItem>
+
+            )}
+
+            {props.store.user.id && (
+
+              <MenuItem onClick={handleClose} component={Link} to="/expiration">
+                Expiration
+              </MenuItem>
+
+            )}
+            <MenuItem onClick={handleClose} component={Link} to="/about">
+              About
       </MenuItem>
 
-        <MenuItem className='delete' 
-          onClick={ () => {
-          handleClose()
-          props.dispatch({ type: 'LOGOUT' })}}>
-            Logout
+            <MenuItem className='delete'
+              onClick={() => {
+                handleClose()
+                props.dispatch({ type: 'LOGOUT' })
+              }}>
+              Logout
         </MenuItem>
-        </Menu>
+          </Menu>
 
 
 
-        {!props.store.user.id && (
-          <Link className="nav-link" to={loginLinkData.path}>
-            {/* Show this link if they are logged in or not,
+          {!props.store.user.id && (
+            <Link className="nav-link" to={loginLinkData.path}>
+              {/* Show this link if they are logged in or not,
           but call this link 'Home' if they are logged in,
           and call this link 'Login / Register' if they are not */}
-            {loginLinkData.text}
-          </Link>
-        )}
-        {/* Show the link to the info page and the logout button if the user is logged in */}
-        {/* {!props.store.user.id && (
+              {loginLinkData.text}
+            </Link>
+          )}
+          {/* Show the link to the info page and the logout button if the user is logged in */}
+          {/* {!props.store.user.id && (
 
           <Link className="nav-link" to="/info">
             Info Page
@@ -91,13 +100,13 @@ const Nav = (props) => {
           // <LogOutButton className="nav-link" />
 
         )} */}
-        {/* Always show this link since the about page is not protected */}
-        {!props.store.user.id && (
+          {/* Always show this link since the about page is not protected */}
+          {!props.store.user.id && (
 
-          <Link className="nav-link" to="/about">
-            About
-          </Link>
-        )}
+            <Link className="nav-link" to="/about">
+              About
+            </Link>
+          )}
         </div>
       </div>
     </div>
