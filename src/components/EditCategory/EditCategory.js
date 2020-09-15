@@ -7,8 +7,9 @@ import { withRouter, Link } from 'react-router-dom';
 // material ui 
 import { Typography, withStyles, Button, Card, TextField } from '@material-ui/core';
 
-import editIcon from './Icons/edit.png'
-import deleteIcon from './Icons/trash.png'
+import editIcon from './Icons/edit.png';
+// import deleteIcon from './Icons/trash.png';
+import DeleteCategoryDialog from '../DeleteCategoryDialog/DeleteCategoryDialog';
 
 
 
@@ -76,9 +77,10 @@ class EditCategory extends Component {
             name: this.props.category.name,
         })
     }
-    deleteCategory = () => {
-        this.props.dispatch({ type: 'DELETE_CATEGORY', payload: this.props.category.id })
-    }
+    
+    // deleteCategory = () => {
+    //     this.props.dispatch({ type: 'DELETE_CATEGORY', payload: this.props.category.id })
+    // }
 
     saveEdit = () => {
         console.log(this.state.name)
@@ -103,11 +105,12 @@ class EditCategory extends Component {
                         <Typography
                             alignItems="center"
                             justify="center"
-                            variant="h4"
+                            variant="h5"
                             className={classes.text}>
                             {this.props.category.name}
                         </Typography>
-                        <img className={classes.img} onClick={this.deleteCategory} src={deleteIcon} alt="delete" />
+                        <DeleteCategoryDialog id={this.props.category.id}/>
+                        {/* <img className={classes.img} onClick={this.deleteCategory} src={deleteIcon} alt="delete" /> */}
                         <img className={classes.img} onClick={this.toggleState} alt="edit" src={editIcon} />
 
                     </div>

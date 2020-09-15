@@ -11,6 +11,9 @@ import {
     InputLabel, Select, MenuItem
 } from '@material-ui/core';
 
+import deleteIcon from './Icons/trash.png';
+
+
 const styles = {
     button: {
         width: '50px',
@@ -18,52 +21,64 @@ const styles = {
     },
     margin: {
         margin: '3px'
-    }
+    },
+    img: {
+
+        marginTop: '10px',
+
+        Width: '45px',
+        height: '45px',
+
+
+        margin: '5px',
+        float: 'right'
+
+    },
 }
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
 // component name TemplateFunction with the name for the new component.
-function DeleteDialog(props) {
+function DeleteCategoryDialog(props) {
 
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
-        console.log(props.spice)
+        console.log(props.id)
     };
     const { classes } = props;
 
 
     const handleClose = () => {
-        props.toggleState()
         setOpen(false);
     };
 
     const handleDelete = (id) => {
 
-        props.dispatch({ type: 'DELETE_SPICE', payload: id })
+        props.dispatch({ type: 'DELETE_CATEGORY', payload: id})
         handleClose()
     }
 
     return (
         <div>
-            <Button className={classes.button} variant="outlined" color="primary" onClick={handleClickOpen}>
+            <img className={classes.img} onClick={handleClickOpen} src={deleteIcon} alt="delete" />
+            {/* <Button className={classes.button} variant="outlined" color="primary" onClick={handleClickOpen}>
                 Delete
-            </Button>
+            </Button> */}
 
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Edit</DialogTitle>
+                <DialogTitle id="form-dialog-title">Delete category</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Are you sure you want to delete this spice?
+                        Are you sure you want to delete this category?
                 </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button className={classes.button} variant="outlined" color="primary" onClick={handleClose}>
                         Cannel
                 </Button>
-                    <Button onClick={() => handleDelete(props.spice.id)} className={classes.button} variant="outlined" color="primary" >
+                    <Button onClick={() => handleDelete(props.id)} className={classes.button} variant="outlined" color="primary" >
                         Delete
                 </Button>
                 </DialogActions>
@@ -72,8 +87,8 @@ function DeleteDialog(props) {
     );
 }
 
-const withStyleDeleteDialog = withStyles(styles)(DeleteDialog)
+const withStyleDeleteCategoryDialog = withStyles(styles)(DeleteCategoryDialog)
 
-const withRouteDeleteDialog = withRouter(withStyleDeleteDialog)
+const withRouteDeleteCategoryDialog = withRouter(withStyleDeleteCategoryDialog)
 
-export default connect(mapStoreToProps)(withRouteDeleteDialog);
+export default connect(mapStoreToProps)(withRouteDeleteCategoryDialog);

@@ -72,7 +72,7 @@ class Categories extends Component {
           alignItems="center"
           justify="center"
         >
-            <Grid item xs={12} align="center">
+            <Grid item xs={11} align="center">
               <Card className={classes.card} >
                 <Typography variant="h5" component="h2">
                   Add a category
