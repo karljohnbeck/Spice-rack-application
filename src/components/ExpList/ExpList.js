@@ -6,6 +6,7 @@ import moment from 'moment';
 
 
 import Overlay from '../EditSpiceOverlay/EditSpiceOverlay'
+import DeleteDialog from '../DeleteDialog/DeleteDialog'
 
 
 import { CardActions, CardContent, Typography, MenuItem, withStyles, Grid, Select, Button, Card, TextField } from '@material-ui/core';
@@ -98,7 +99,6 @@ class ExpList extends Component {
               console.log(expDate)
               console.log(expDate.diff(today, 'days'))
               if (compare > 0) {
-
                 return (
 
                   <Card key={i} align="center" className={classes.card}>
@@ -119,7 +119,9 @@ class ExpList extends Component {
                       </CardActions >
 
                       <CardActions className={classes.cardAction}>
-                        <Button className={classes.button} onClick={() => this.deleteSpice(spice.id)} variant="outlined" color="primary" >Delete</Button>
+                      <DeleteDialog toggleState={this.toggleState} spice={spice}/>
+
+                        {/* <Button className={classes.button} onClick={() => this.deleteSpice(spice.id)} variant="outlined" color="primary" >Delete</Button> */}
                       </CardActions>
 
 
@@ -169,7 +171,10 @@ class ExpList extends Component {
                         <Overlay toggleState={this.toggleState} spice={spice} />
                       </CardActions >
                       <CardActions className={classes.cardAction}>
-                        <Button className={classes.button} onClick={() => this.deleteSpice(spice.id)} variant="outlined" color="primary" >Delete</Button>
+
+                      <DeleteDialog toggleState={this.toggleState} spice={spice}/>
+
+                        {/* <Button className={classes.button} onClick={() => this.deleteSpice(spice.id)} variant="outlined" color="primary" >Delete</Button> */}
                       </CardActions>
 
                     </CardContent>

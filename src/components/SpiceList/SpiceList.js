@@ -3,9 +3,12 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { Link, withRouter } from 'react-router-dom';
 
+
+
 import { withStyles, Typography, Button, CardContent, CardActions, Card } from '@material-ui/core';
 
 import Overlay from '../EditSpiceOverlay/EditSpiceOverlay'
+import DeleteDialog from '../DeleteDialog/DeleteDialog'
 
 const styles = {
     gridContainer: {
@@ -70,9 +73,26 @@ class SpiceList extends Component {
         })
     }
 
-    deleteSpice = () => {
-        this.props.dispatch({ type: 'DELETE_SPICE', payload: this.props.spice.id })
-    }
+    // deleteSpice = () => {
+    //     swal({
+    //         title: "Are you sure?",
+    //         text: "Once deleted, you cannot undo.",
+    //         icon: "warning",
+    //         buttons: true,
+    //         dangerMode: true,
+    //       })
+    //       .then((willDelete) => {
+    //         if (willDelete) {
+    //             this.props.dispatch({ type: 'DELETE_SPICE', payload: this.props.spice.id })
+    //           swal("Your Spice has been removed form your Spice-rack", {
+    //             icon: "success",
+    //           });
+    //         } else {
+    //             this.toggleState()
+    //           swal("Canceled delete.");
+    //         }
+    //       });
+    // }
 
 
 
@@ -119,7 +139,9 @@ class SpiceList extends Component {
                             </CardActions >
                             <br />
                             <CardActions className={classes.cardAction}>
-                                <Button className={classes.button} onClick={this.deleteSpice} variant="outlined" color="primary" >Delete</Button>
+                                {/* <Button className={classes.button} onClick={this.deleteSpice} variant="outlined" color="primary" >Delete</Button> */}
+                                <DeleteDialog toggleState={this.toggleState} spice={this.props.spice}/>
+
                             </CardActions>
                             <CardActions className={classes.cardAction}>
                                 <Button className={classes.button} onClick={this.toggleState} variant="outlined" color="primary" >Cancel</Button>

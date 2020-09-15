@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 // material ui 
 import { Typography, InputLabel, MenuItem, Input, withStyles, Grid, Select, Button, Card, TextField } from '@material-ui/core';
 
+import AddSpiceDialog from '../AddSpiceDialog/AddSpiceDialog'
 const styles = {
   gridContainer: {
     paddingLeft: '10px',
@@ -65,6 +66,13 @@ class AddSpice extends Component {
       }
     })
   }
+  clearState = () => {
+    this.setState({
+      name: '',
+    exp_date: undefined,
+    list: [],
+    })
+  }
 
   render() {
     const { classes } = this.props;
@@ -89,7 +97,9 @@ class AddSpice extends Component {
                   className={classes.margin}>
                   Add a new spice:
               </Typography>
-                <TextField onChange={this.handleChange}
+                <TextField 
+                onChange={this.handleChange}
+                value={this.state.name}
                   className={classes.margin}
                   id="spice-name"
                   label="Spice name"
@@ -98,14 +108,17 @@ class AddSpice extends Component {
                     id: 'spice-name',
                   }} />
                 <br />
-                <Input type='Date' className={classes.margin}
+                <Input type='Date' 
+                className={classes.margin}
+                 value={this.state.exp_date || ''}                 
+                 onChange={this.handleChange}
                   variant="outlined"
                   id="exp-date"
                   inputProps={{
                     name: 'exp_date',
                     id: 'exp-date',
                   }}
-                  onChange={this.handleChange} />
+                   />
                 <br />
                 {/* Needs to be multi select eventually */}
                 <InputLabel className={classes.margin} htmlFor="category-simple">Categories</InputLabel>
@@ -129,7 +142,8 @@ class AddSpice extends Component {
                 <br />
                 <Button component={Link} to='/user' className={classes.margin}>Cancel</Button>
 
-                <Button onClick={this.addSpice} className={classes.margin}>Add Spice</Button>
+                {/* <Button onClick={this.addSpice} className={classes.margin}>Add Spice</Button> */}
+                <AddSpiceDialog addSpice={this.addSpice} clearState={this.clearState}/>
 
               </Card>
             </Grid>
