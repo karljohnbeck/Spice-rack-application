@@ -69,11 +69,6 @@ class UserPage extends Component {
 
     return (
       <Grid container spacing={32} className={classes.gridContainer} >
-        {/* <Grid item xs={12}>
-
-          <h1 id="welcome">Welcome, {this.props.store.user.username}!</h1>
-
-        </Grid> */}
         <Grid
           container
           spacing={16}
@@ -122,7 +117,7 @@ class UserPage extends Component {
                 className={classes.margin}>
                 Add a new spice
                         </Typography>
-              <Button alignContent="center" justify="center" variant="outlined" component={Link} to='/addspice' className={classes.margin}>+ Add a spice</Button>
+              <Button align="center" justify="center" variant="outlined" component={Link} to='/addspice' className={classes.margin}>+ Add a spice</Button>
             </Card>
           </Grid>
           <br />

@@ -13,6 +13,7 @@ const userRouter = require('./routes/user.router');
 const spiceListRouter = require('./routes/spiceList.router');
 const categoriesListRouter = require('./routes/categoriesList.router');
 const uniqueCategoriesRouter = require('./routes/UniqueCategories.router');
+const recipeRouter = require('./routes/recipe.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -30,6 +31,7 @@ app.use('/api/user', userRouter);
 app.use('/api/spicelist', spiceListRouter)
 app.use('/api/categorieslist', categoriesListRouter)
 app.use('/api/uniquecategories', uniqueCategoriesRouter)
+app.use('/api/recipe', recipeRouter) 
 
 // Serve static files
 app.use(express.static('build'));

@@ -55,7 +55,7 @@ function AddSpiceDialog(props) {
             </Button>
 
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Success!</DialogTitle>
+                <DialogTitle id="form-dialog-title">Succuss!</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                         Your spice has been added! Return home or add more?

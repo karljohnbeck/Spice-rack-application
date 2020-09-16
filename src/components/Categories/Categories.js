@@ -70,7 +70,6 @@ class Categories extends Component {
           spacing={32}
           direction="column"
           alignItems="center"
-          justify="center"
         >
             <Grid item xs={11} align="center">
               <Card className={classes.card} >
@@ -86,6 +85,7 @@ class Categories extends Component {
                   inputProps={{
                     name: 'name',
                     id: 'spice-name',
+                  
                   }} />
                 <br />
                 <Button variant="outlined" component={Link} to='/user' className={classes.margin}>Cancel</Button>

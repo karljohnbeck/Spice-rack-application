@@ -92,8 +92,8 @@ class App extends Component {
             />
             <ProtectedRoute
               // logged in shows UserPage else shows LoginPage
-              exact
-              path="/recipe"
+              
+              path="/recipe/:search"
               component={RecipeList}
             />
 

@@ -18,9 +18,6 @@ const styles = {
     paddingRight: '10px',
   },
   card: {
-    minHeight: '150px',
-    maxHeight: '150px',
-    minWidth: '100px',
     padding: '10px',
     justifyContent: "center",
     margin: '10px'
@@ -34,26 +31,7 @@ const styles = {
     margin: '3px',
     textAlign: 'center',
   },
-  bullet: {
-    marginLeft: '5%',
-    width: "90%",
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-  margin: {
-    margin: '15px',
-  },
-  button: {
-    width: '50px',
-    height: '40px',
-    margin: '0',
-    fontSize: '15x'
-
-  }
+ 
 };
 
 // Basic class component structure for React with default state
@@ -82,7 +60,7 @@ class ExpList extends Component {
 
     return (
       <div>
-        <h2 >{this.state.heading}</h2>
+        
         <Grid container spacing={32} className={classes.gridContainer} >
           <Grid
             container
@@ -91,6 +69,7 @@ class ExpList extends Component {
             alignItems="center"
             justify="center"
           >
+            <h2 >Expired Spices</h2>
             {this.props.store.spiceList.map((spice, i) => {
               let today = moment()
               let expDate = moment(spice.exp_date)
@@ -108,8 +87,8 @@ class ExpList extends Component {
                         <br />
                       </Typography>
                       <br />
-                      <Typography className={classes.cardPlus} component="p">
-                        Expires on: {moment(spice.exp_date).format('YYYY-MM-DD')}
+                      <Typography className={classes.cardPlus} component="h6">
+                        Expired on: {moment(spice.exp_date).format('YYYY-MM-DD')}
                       </Typography>
 
                       <CardActions className={classes.cardAction}>
@@ -127,30 +106,19 @@ class ExpList extends Component {
 
                     </CardContent>
                   </Card>
-
-
-                  // <Card className={classes.card} >
-                  //   <CardContent>
-                  //     <CardActions className={classes.cardAction}>
-                  //       <Button className={classes.button} component={Link} to='/recipe' variant="outlined" color="primary" >Recipes</Button>
-                  //     </CardActions >
-                  //     <CardActions className={classes.cardAction}>
-                  //       {/* <Button onClick={this.editingSpice} component={Link} to={'/editspice/' + spice_id} size="small">Edit Spice</Button> */}
-                  //       <Overlay toggleState={this.toggleState} spice={spice} />
-                  //       {/* <Button onClick={() => this.props.history.push('/editspice/' + spice_id)} size="small">Edit Spice</Button> */}
-                  //     </CardActions >
-                  //     <br />
-                  //     <CardActions className={classes.cardAction}>
-                  //       <Button className={classes.button} onClick={this.deleteSpice} variant="outlined" color="primary" >Delete</Button>
-                  //     </CardActions>
-                  //     <CardActions className={classes.cardAction}>
-                  //       <Button className={classes.button} onClick={this.toggleState} variant="outlined" color="primary" >Cancel</Button>
-                  //     </CardActions>
-                  //   </CardContent>
-                  // </Card>
-
                 )
-              } else if (today.diff(expDate, 'days') > -30) {
+              } 
+            })}
+              
+              <h2 >Close to expiring spices</h2>
+            {this.props.store.spiceList.map((spice, i) => {
+              let today = moment()
+              let expDate = moment(spice.exp_date)
+              let compare = (today.diff(expDate, 'days'))
+              console.log(today)
+              console.log(expDate)
+              console.log(expDate.diff(today, 'days'))
+              if (today.diff(expDate, 'days') > -30 && today.diff(expDate, 'days') < 0) { 
                 return (
                   <Card key={i} align="center" onClick={this.toggleState} className={classes.card}>
                     <CardContent>
@@ -164,7 +132,9 @@ class ExpList extends Component {
 
 
                       <Typography component="p">
-                        Expired on: {moment(spice.exp_date).format('YYYY-MM-DD')}
+                        Will expire on: {moment(spice.exp_date).format('YYYY-MM-DD')}
+                        <br />
+                        Only {expDate.diff(today, 'days')} days left!
                       </Typography>
 
                       <CardActions className={classes.cardAction}>

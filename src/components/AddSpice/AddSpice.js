@@ -88,7 +88,7 @@ class AddSpice extends Component {
             justify="center"
           >
           
-            <Grid align="center" justify="center" item xl={32} xs={10}>
+            <Grid align="center"  item xl={12} xs={10}>
               <Card  >
                 <Typography
                   align="center"

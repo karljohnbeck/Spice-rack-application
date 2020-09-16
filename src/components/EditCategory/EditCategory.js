@@ -103,7 +103,6 @@ class EditCategory extends Component {
                 {this.state.isEdit ?
                     <div>
                         <Typography
-                            alignItems="center"
                             justify="center"
                             variant="h5"
                             className={classes.text}>

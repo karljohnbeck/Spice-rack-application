@@ -9,7 +9,12 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 class RecipeList extends Component {
   state = {
     heading: 'RecipeList Component',
+    searchQuery: this.props.match.params.search
   };
+
+  componentDidMount() {
+    console.log(this.state.searchQuery)
+  }
 
   render() {
     return (

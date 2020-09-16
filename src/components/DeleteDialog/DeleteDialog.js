@@ -53,7 +53,7 @@ function DeleteDialog(props) {
             </Button>
 
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Edit</DialogTitle>
+                <DialogTitle id="form-dialog-title">Delete spice</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                         Are you sure you want to delete this spice?

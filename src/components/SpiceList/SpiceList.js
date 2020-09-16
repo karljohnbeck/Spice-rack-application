@@ -99,7 +99,7 @@ class SpiceList extends Component {
 
     render() {
         const { classes } = this.props;
-        const spice_id = this.props.spice.id
+        const spice_id = this.props.spice.name
 
         return (
             <div>
@@ -135,7 +135,7 @@ class SpiceList extends Component {
                             <CardActions className={classes.cardAction}>
                                 {/* <Button onClick={this.editingSpice} component={Link} to={'/editspice/' + spice_id} size="small">Edit Spice</Button> */}
                                 <Overlay toggleState={this.toggleState} spice={this.props.spice} />
-                                {/* <Button onClick={() => this.props.history.push('/editspice/' + spice_id)} size="small">Edit Spice</Button> */}
+                                <Button onClick={() => this.props.history.push('/recipe/' + this.props.spice.name)} size="small">Edit Spice</Button>
                             </CardActions >
                             <br />
                             <CardActions className={classes.cardAction}>
