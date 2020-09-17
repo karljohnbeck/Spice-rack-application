@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 
 // material ui 
-import { Typography, MenuItem, withStyles, Grid, Select, Button, Card, TextField } from '@material-ui/core';
+import { Typography, MenuItem, withStyles, Grid, Select, Button, Card, TextField, FormControl } from '@material-ui/core';
 
 let hasCategory = false
 
@@ -16,7 +16,6 @@ const styles = {
     paddingRight: '10px',
   },
   card: {
-    minHeight: '200px',
     maxHeight: '200px',
 
   },
@@ -38,6 +37,7 @@ const styles = {
   margin: {
     margin: '5px',
   },
+  
 };
 
 class UserPage extends Component {
@@ -68,16 +68,15 @@ class UserPage extends Component {
     const { classes } = this.props;
 
     return (
-      <Grid container spacing={32} className={classes.gridContainer} >
-        <Grid
-          container
-          spacing={16}
-          direction="column"
-          alignItems="center"
-          justify="center"
-        >
-          <Grid item xs={6}>
-            <Card className={classes.pos}>
+      <Grid 
+      container 
+      spacing={16} 
+      className={classes.gridContainer}
+      align="center"
+                justify="center" >
+        
+          <Grid border={1} item xs={10} xl={12}>
+            <Card className={classes.yellow}>
               <Typography
                 align="center"
                 justify="center"
@@ -87,9 +86,15 @@ class UserPage extends Component {
             </Typography>
               <TextField onChange={this.differentSearch} className={classes.margin} id="filled-basic" label="Search by name" variant="filled" />
               <br />
+
+              <FormControl variant="outlined">
+
               <Select className={classes.margin}
                 value={this.state.categorySelected}
                 onChange={this.handleChange}
+                fullWidth
+                variant="outlined"
+
                 inputProps={{
                   name: 'categorySelected',
                   id: 'category-simple',
@@ -106,10 +111,11 @@ class UserPage extends Component {
                   )
                 })}
               </Select>
+              </FormControl>
             </Card>
             <br />
 
-            <Card className={classes.pos}>
+            <Card className={classes.card}>
               <Typography
                 align="center"
                 justify="center"
@@ -122,7 +128,6 @@ class UserPage extends Component {
           </Grid>
           <br />
 
-        </Grid>
 
         <Grid
           container
@@ -153,7 +158,7 @@ class UserPage extends Component {
             return (
               <Grid
                 className={classes.margin}
-                key={i} item xs={8} xl={3}>
+                key={i} item xs={10} xl={3}>
                 <SpiceList spice={spice} />
               </Grid>
 

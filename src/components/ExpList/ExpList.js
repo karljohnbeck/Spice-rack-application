@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 
 
@@ -9,7 +9,7 @@ import Overlay from '../EditSpiceOverlay/EditSpiceOverlay'
 import DeleteDialog from '../DeleteDialog/DeleteDialog'
 
 
-import { CardActions, CardContent, Typography, MenuItem, withStyles, Grid, Select, Button, Card, TextField } from '@material-ui/core';
+import { CardActions, CardContent, Typography, withStyles, Grid, Card, } from '@material-ui/core';
 
 
 const styles = {
@@ -24,7 +24,8 @@ const styles = {
 
   },
   cardPlus: {
-    backgroundColor: 'red'
+    borderColor: '#EE856D',
+    border: '1px',
   },
   cardAction: {
     display: 'inline-block',
@@ -87,7 +88,7 @@ class ExpList extends Component {
                         <br />
                       </Typography>
                       <br />
-                      <Typography className={classes.cardPlus} component="h6">
+                      <Typography className={classes.cardPlus} border={1} component="h6">
                         Expired on: {moment(spice.exp_date).format('YYYY-MM-DD')}
                       </Typography>
 
@@ -114,7 +115,6 @@ class ExpList extends Component {
             {this.props.store.spiceList.map((spice, i) => {
               let today = moment()
               let expDate = moment(spice.exp_date)
-              let compare = (today.diff(expDate, 'days'))
               console.log(today)
               console.log(expDate)
               console.log(expDate.diff(today, 'days'))
@@ -143,8 +143,6 @@ class ExpList extends Component {
                       <CardActions className={classes.cardAction}>
 
                       <DeleteDialog toggleState={this.toggleState} spice={spice}/>
-
-                        {/* <Button className={classes.button} onClick={() => this.deleteSpice(spice.id)} variant="outlined" color="primary" >Delete</Button> */}
                       </CardActions>
 
                     </CardContent>

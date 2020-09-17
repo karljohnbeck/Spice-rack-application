@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import moment from 'moment';
 
 import { withStyles } from '@material-ui/core/styles';
 import {
-    Button, TextField, Dialog, DialogActions,
-    DialogContent, DialogContentText, DialogTitle, Input,
-    InputLabel, Select, MenuItem
+    Button, Dialog, DialogActions,
+    DialogContent, DialogContentText, DialogTitle, 
+    
 } from '@material-ui/core';
 
 import deleteIcon from './Icons/trash.png';

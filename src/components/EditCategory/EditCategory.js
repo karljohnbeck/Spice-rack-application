@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 // material ui 
 import { Typography, withStyles, Button, Card, TextField } from '@material-ui/core';
@@ -22,9 +22,7 @@ const styles = {
         minHeight: '65px',
         minWidth: '300px'
     },
-    cardAction: {
-        backgroundColor: 'yellow',
-    },
+   
     img: {
 
         marginTop: '10px',
@@ -104,8 +102,11 @@ class EditCategory extends Component {
                     <div>
                         <Typography
                             justify="center"
-                            variant="h5"
-                            className={classes.text}>
+                            fontWeight="fontWeightBold" 
+                            variant="h4" 
+                            component="h1"
+                            className={classes.text} 
+                            >
                             {this.props.category.name}
                         </Typography>
                         <DeleteCategoryDialog id={this.props.category.id}/>

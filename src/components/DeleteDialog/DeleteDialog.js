@@ -1,20 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter,  } from 'react-router-dom';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import moment from 'moment';
 
 import { withStyles } from '@material-ui/core/styles';
 import {
-    Button, TextField, Dialog, DialogActions,
-    DialogContent, DialogContentText, DialogTitle, Input,
-    InputLabel, Select, MenuItem
+    Button, Dialog, DialogActions,
+    DialogContent, DialogContentText, DialogTitle,
 } from '@material-ui/core';
 
 const styles = {
     button: {
-        width: '50px',
-        height: '40px'
+        width: '80px',
+        height: '60px',
     },
     margin: {
         margin: '3px'
@@ -61,7 +59,7 @@ function DeleteDialog(props) {
                 </DialogContent>
                 <DialogActions>
                     <Button className={classes.button} variant="outlined" color="primary" onClick={handleClose}>
-                        Cannel
+                        Cancel
                 </Button>
                     <Button onClick={() => handleDelete(props.spice.id)} className={classes.button} variant="outlined" color="primary" >
                         Delete

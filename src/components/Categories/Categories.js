@@ -71,11 +71,12 @@ class Categories extends Component {
           direction="column"
           alignItems="center"
         >
+          <h2> Add a category</h2>
             <Grid item xs={11} align="center">
               <Card className={classes.card} >
-                <Typography variant="h5" component="h2">
+                {/* <Typography variant="h5" component="h2">
                   Add a category
-                </Typography>
+                </Typography> */}
                 <TextField onChange={this.handleChange}
                 variant="filled"
                   className={classes.margin}

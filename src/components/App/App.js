@@ -63,35 +63,38 @@ class App extends Component {
               exact
               path="/info"
               component={InfoPage}
+
             />
 
             <ProtectedRoute
-              // logged in shows UserPage else shows LoginPage
+              // logged in shows AddSpice else shows LoginPage
               exact
               path="/addspice"
               component={AddSpice}
+
             />
 
             <ProtectedRoute
-              // logged in shows UserPage else shows LoginPage
-              
+              // logged in shows EditSpice else shows LoginPage
               path="/editspice/:spice_id"
               component={EditSpice}
+
             />
             <ProtectedRoute
-              // logged in shows UserPage else shows LoginPage
+              // logged in shows Categories else shows LoginPage
               exact
               path="/categories"
               component={Categories}
+
             />
             <ProtectedRoute
-              // logged in shows UserPage else shows LoginPage
+              // logged in shows Expiration else shows LoginPage
               exact
               path="/expiration"
               component={Expiration}
             />
             <ProtectedRoute
-              // logged in shows UserPage else shows LoginPage
+              // logged in shows RecipeList else shows LoginPage
               
               path="/recipe/:search"
               component={RecipeList}

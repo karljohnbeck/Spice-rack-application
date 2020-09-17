@@ -7,6 +7,7 @@ body,
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
+  /* font-family: Georgia, serif; */
 }
 
 img {
@@ -15,7 +16,7 @@ img {
 }
 
 html {
-  background-color: grey;
+  background-color: #e9f6f6;
 }
 /* --------------------------------------------------------------------------------
 Container
@@ -36,7 +37,7 @@ Button
   border-width: 1px 1px 3px;
   border-radius: 4px;
   background-color: #00acb0;
-  color: #f8f8f8;
+  color: #e9f6f6;
   font-size: 1.1rem;
   outline: 0;
   cursor: pointer;
