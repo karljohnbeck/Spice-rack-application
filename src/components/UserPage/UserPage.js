@@ -4,10 +4,10 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import SpiceList from '../SpiceList/SpiceList'
 import { Link } from 'react-router-dom';
 
-
 // material ui 
 import { Typography, MenuItem, withStyles, Grid, Select, Button, Card, TextField, FormControl } from '@material-ui/core';
 
+// used for the search filter on the page
 let hasCategory = false
 
 const styles = {
@@ -17,22 +17,6 @@ const styles = {
   },
   card: {
     maxHeight: '200px',
-
-  },
-  cardAction: {
-    backgroundColor: 'yellow',
-
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    padding: '15px',
   },
   margin: {
     margin: '5px',
@@ -49,19 +33,19 @@ const styles = {
   select: {
     backgroundColor: 'white',
     margin: '5px',
-    width: 350,    
+    width: 350,
   },
   greyButton: {
     margin: '10px',
     backgroundColor: "#6e7e85",
     color: 'white'
   },
-
 };
 
 class UserPage extends Component {
   // this component doesn't do much to start, just renders some user info to the DOM
 
+  // on load, get the spice list and categories
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_SPICELIST' })
     this.props.dispatch({ type: 'FETCH_CATEGORIES' })
@@ -71,16 +55,18 @@ class UserPage extends Component {
   state = {
     searchCriteria: '',
     categorySelected: 0,
+    // used for the search filter
     hasCategory: false,
   }
 
+  // handle select values
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  // handle the input change
   differentSearch = (event) => {
     this.setState({ searchCriteria: event.target.value })
-    console.log(this.state)
   }
 
   render() {
@@ -93,13 +79,15 @@ class UserPage extends Component {
 
           <h3>Spice filter:</h3>
 
-          <TextField inputProps={{min: 0, style: { textAlign: 'center' }}} className={classes.select} onChange={this.differentSearch} id="filled-basic" label="Search by name" />
+          {/* search by input field */}
+          <TextField inputProps={{ min: 0, style: { textAlign: 'center' } }} className={classes.select} onChange={this.differentSearch} id="filled-basic" label="Search by name" />
 
           <br />
+          {/* Search by the categories */}
           <FormControl className={classes.searchWidth} variant="outlined">
 
             <Select className={classes.select}
-            
+
               value={this.state.categorySelected}
               onChange={this.handleChange}
               inputProps={{
@@ -110,6 +98,7 @@ class UserPage extends Component {
               <MenuItem value={0} >
                 All categories
                     </MenuItem>
+              {/* loop over all the categories possible */}
               {this.props.store.uniqueCategories.map((item, i) => {
                 return (
                   <MenuItem key={i} value={item.id} >
@@ -119,8 +108,10 @@ class UserPage extends Component {
               })}
             </Select>
           </FormControl>
-          <br/>
-          <br/>
+
+          <br />
+          <br />
+
         </section>
         <Grid
           container
@@ -133,6 +124,7 @@ class UserPage extends Component {
 
             <br />
 
+            {/* card for allowing more spices to be added */}
             <Card className={classes.card}>
               <Typography
                 align="center"
@@ -145,46 +137,54 @@ class UserPage extends Component {
             </Card>
           </Grid>
           <br />
-
-
           <Grid
             container
             spacing={16}
             align="center"
             justify="center"
           >
+
+            {/* Below is a large monster of a code section, 
+              it loops over a few things to make the search bars work */}
+            {/* Start by looping over the spicelist reducer */}
             {this.props.store.spiceList.filter((spice) => {
 
+              // loop over the categorys on each spice in the spice list
               (spice.cat_list.map((category) => { if (category === this.state.categorySelected) { hasCategory = true; console.log(hasCategory); return true } }))
 
+              // if no input is typed and no category is selected, return all the spices
               if (this.state.searchCriteria === '' && this.state.categorySelected === 0) {
                 hasCategory = false;
                 return spice
               }
+
+              // based on input/select values return those spicific spices
               else if (
+                // checks if BOTH input and category selected is true
                 spice.name.toLowerCase().includes(this.state.searchCriteria.toLowerCase()) && hasCategory === true
                 ||
+                // checks input is filled out AND select is empty
                 spice.name.toLowerCase().includes(this.state.searchCriteria.toLowerCase()) && this.state.categorySelected === 0
                 ||
+                // checks if select is filled out AND input is empty
                 this.state.searchCriteria === '' && hasCategory === true
               ) {
                 hasCategory = false;
                 return spice
               }
+              // after all returns, loop those over and display them on the dom
             }).map((spice, i) => {
 
               return (
                 <Grid
                   className={classes.margin}
                   key={i} item xs={10} xl={3}>
+                  {/* each individual spice card */}
                   <SpiceList spice={spice} />
                 </Grid>
-
               )
-
             })}
           </Grid>
-
         </Grid>
       </>
     );
@@ -193,6 +193,5 @@ class UserPage extends Component {
 
 // this allows us to use <App /> in index.js
 const styleUserPage = withStyles(styles)(UserPage)
-
 
 export default connect(mapStoreToProps)(styleUserPage);
