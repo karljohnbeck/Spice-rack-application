@@ -50,7 +50,6 @@ function OverlayEditButton(props) {
     };
     const { classes } = props;
 
-
     const handleClose = () => {
         setName(props.spice.name)
         setExpDate(props.spice.exp_date)

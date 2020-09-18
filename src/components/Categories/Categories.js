@@ -17,26 +17,11 @@ const styles = {
     backgroundColor: '#ffe2b6',
     width: '100%',
   },
-  cardAction: {
-    backgroundColor: 'yellow',
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
   margin: {
     margin: '15px'
   },
   editButton: {
     margin: '5px',
-
     backgroundColor: "#6e7e85",
     color: 'white'
   }
@@ -53,10 +38,12 @@ class Categories extends Component {
     name: "",
   };
 
+  // handle input change
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  // make sure input is at least filled out, then post the category to the saga 
   addCategory = () => {
     if (this.state.name === "") {
       alert('A category name cannot be empty.')
@@ -84,10 +71,10 @@ class Categories extends Component {
             </section>
 
             <Grid item xs={11} align="center">
+
+              {/* card for the category inputs and buttons */}
               <Card className={classes.card} >
-                {/* <Typography variant="h5" component="h2">
-                  Add a category
-                </Typography> */}
+                
                 <TextField onChange={this.handleChange}
                   variant="filled"
                   className={classes.margin}
@@ -111,6 +98,7 @@ class Categories extends Component {
               </section>
               <Grid item xs={11} align="center">
 
+                  {/* loop over all the unique categories and display thier cards on the page */}
               {this.props.store.uniqueCategories.map((category, i) => {
                 return (
                   <div key={i}>

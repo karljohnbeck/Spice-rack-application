@@ -14,21 +14,19 @@ const styles = {
   img: {
     maxHeight: "300px",
     maxWidth: "300px",
-    
   },
   button: {
     width: '80px',
     height: '60px',
     backgroundColor: "#6e7e85",
     color: 'white',
-    // display: 'inline-block'
-},
-titleBar: {
+  },
+  titleBar: {
   backgroundColor: '#ffe2b6',
   width: '100%',
   marginTop: '-8px'
-},
-}
+  },
+  }
 
 // Basic class component structure for React with default state
 // value setup. When making a new component be sure to replace
@@ -42,6 +40,7 @@ class RecipeList extends Component {
 
   };
 
+  // on load, get the recipies from the edamam api matching the url
   componentDidMount() {
     console.log(this.state.searchQuery)
     this.props.dispatch({type: 'FETCH_RECIPE', payload: this.state.searchQuery})
@@ -51,12 +50,8 @@ class RecipeList extends Component {
     const { classes } = this.props;
     return (
       <div>
-        
         <Grid container spacing={32}
-        // className={classes.gridContainer}
         >
-
-
           <Grid
             container
             spacing={16}
@@ -71,7 +66,7 @@ class RecipeList extends Component {
               {this.props.match.params.search}</h2>
               </section>
             
-
+            {/* loop over the recipie reducer and display all the cards  */}
             {this.props.store.recipeReducer.map((recipe, i) => {
               if(this.props.store.recipeReducer.length === []) {
                 return (<p>This may take a few seconds to load</p>)
@@ -92,7 +87,8 @@ class RecipeList extends Component {
                       {recipe.recipe.label}
                     </Typography>
                     <Typography gutterBottom variant="h6" component="h2">
-                      {/* {recipe.recipe.url} */}
+
+                      {/* on click, link the user to a new tab with those recipes  */}
                       <Button className={classes.button} target="_blank" href={recipe.recipe.url}>Open Recipe</Button>
 
                     </Typography>

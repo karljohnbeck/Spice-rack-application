@@ -58,6 +58,14 @@ class AddSpice extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  autoFill = () => {
+    this.setState({
+      name: 'Chili Powder',
+      exp_date: '2021-08-22',
+      list: [28, 32], 
+  })
+}
+
 // dispatched to addSpice saga
   addSpice = () => {
     this.props.dispatch({
@@ -87,7 +95,12 @@ class AddSpice extends Component {
             justify="center"
           >
             <section align="center" justify="center" className={classes.titleBar}>
-              <h2 >Add a new spice</h2>
+              <h2
+
+              // delete this later
+               onClick={this.autoFill}
+
+               >Add a new spice</h2>
             </section>
 
             <Grid align="center" item xl={12} xs={10}>

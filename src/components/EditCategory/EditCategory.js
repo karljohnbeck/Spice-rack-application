@@ -11,8 +11,6 @@ import editIcon from './Icons/edit.png';
 // import deleteIcon from './Icons/trash.png';
 import DeleteCategoryDialog from '../DeleteCategoryDialog/DeleteCategoryDialog';
 
-
-
 const styles = {
     gridContainer: {
         paddingLeft: '10px',
@@ -24,16 +22,11 @@ const styles = {
     },
    
     img: {
-
         marginTop: '10px',
-
         Width: '45px',
         height: '45px',
-
-
         margin: '5px',
         float: 'right'
-
     },
     text: {
         marginTop: '10px',
@@ -49,7 +42,6 @@ const styles = {
     },
     editButton: {
         margin: '5px',
-
         backgroundColor: "#6e7e85",
         color: 'white'
     }
@@ -66,26 +58,26 @@ class EditCategory extends Component {
         name: this.props.category.name,
     };
 
+    // handle input change
     handleChange = event => {
         this.setState({ [event.target.name]: event.target.value });
     };
 
+    // toggle state for contisonal render
     toggleState = () => {
         this.setState({
             isEdit: !this.state.isEdit
         })
     }
+    // toggle state and undo input changes
     toggleStatePlus = () => {
         this.setState({
             isEdit: !this.state.isEdit,
             name: this.props.category.name,
         })
     }
-    
-    // deleteCategory = () => {
-    //     this.props.dispatch({ type: 'DELETE_CATEGORY', payload: this.props.category.id })
-    // }
 
+    // dispatch to the saga and make sure name is atleast filled out
     saveEdit = () => {
         if (this.state.name === "") {
             alert('A category name cannot be empty.')
@@ -99,8 +91,7 @@ class EditCategory extends Component {
                 }
             })
         this.toggleState()
-          }
-    }
+          }}
 
     render() {
         const { classes } = this.props;
@@ -109,6 +100,7 @@ class EditCategory extends Component {
             <Card className={classes.card}>
                 {this.state.isEdit ?
                     <div>
+                        {/* Front side has imgs and name displayed  */}
                         <Typography
                             justify="center"
                             fontWeight="fontWeightBold" 
@@ -118,12 +110,13 @@ class EditCategory extends Component {
                             >
                             {this.props.category.name}
                         </Typography>
+                        {/* click and icon to either delete the category or edit it */}
                         <DeleteCategoryDialog id={this.props.category.id}/>
-                        {/* <img className={classes.img} onClick={this.deleteCategory} src={deleteIcon} alt="delete" /> */}
-                        <img className={classes.img} onClick={this.toggleState} alt="edit" src={editIcon} />
+\                        <img className={classes.img} onClick={this.toggleState} alt="edit" src={editIcon} />
 
                     </div>
                     :
+                    // if edit is clicked show the edit input and buttons
                     <div>
                         <TextField
                             className={classes.margin}

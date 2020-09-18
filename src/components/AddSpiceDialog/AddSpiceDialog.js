@@ -48,6 +48,7 @@ function AddSpiceDialog(props) {
     };
 
     const handleAdd = (id) => {
+        // makesure inpiut is filled out 
         if (props.stateCheck === ''){
             alert('Please fill out at least the name of the spice.')
             return false
@@ -65,7 +66,7 @@ function AddSpiceDialog(props) {
     return (
         <div className={classes.wrapper}>
             <Button className={classes.button} onClick={handleAdd}>
-                Add Spice 
+                Save
             </Button>
 
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
@@ -76,9 +77,11 @@ function AddSpiceDialog(props) {
                 </DialogContentText>
                 </DialogContent>
                 <DialogActions>
+                    {/* all done go back home */}
                     <Button className={classes.button} variant="outlined" color="primary" component={Link} to='/user'>
                         Return home
                 </Button>
+                {/* stay on page adn add more */}
                     <Button onClick={handleClose} className={classes.button} variant="outlined" color="primary" >
                         Add more
                 </Button>
