@@ -4,13 +4,10 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 
-
 import Overlay from '../EditSpiceOverlay/EditSpiceOverlay'
 import DeleteDialog from '../DeleteDialog/DeleteDialog'
 
-
 import { CardActions, CardContent, Typography, withStyles, Grid, Card, } from '@material-ui/core';
-
 
 const styles = {
   gridContainer: {
@@ -21,11 +18,6 @@ const styles = {
     padding: '10px',
     justifyContent: "center",
     margin: '10px'
-
-  },
-  cardPlus: {
-    borderColor: '#EE856D',
-    border: '1px',
   },
   cardAction: {
     display: 'inline-block',
@@ -41,7 +33,6 @@ const styles = {
     backgroundColor: '#ffe2b6',
     width: '100%',
   },
-
 };
 
 // Basic class component structure for React with default state
@@ -51,16 +42,18 @@ const styles = {
 class ExpList extends Component {
   state = {
     heading: 'ExpList Component',
+    // handles card flipping 
     isSpice: true
-
   };
 
+  // handles card flipping 
   toggleState = () => {
     this.setState({
       isSpice: !this.state.isSpice
     })
   }
 
+  // run the delete spice sage to remove the specific spice from the DB
   deleteSpice = (spice_id) => {
     this.props.dispatch({ type: 'DELETE_SPICE', payload: spice_id })
   }
@@ -70,7 +63,6 @@ class ExpList extends Component {
 
     return (
       <div>
-
         <Grid container spacing={32} className={classes.gridContainer} >
           <Grid
             container
@@ -84,13 +76,13 @@ class ExpList extends Component {
               <h2 >Expired spices</h2>
             </section>
 
+            {/* Check all the spices on the spice list */}
             {this.props.store.spiceList.map((spice, i) => {
               let today = moment()
               let expDate = moment(spice.exp_date)
               let compare = (today.diff(expDate, 'days'))
-              console.log(today)
-              console.log(expDate)
-              console.log(expDate.diff(today, 'days'))
+
+              // IF the spice is passed is EXP date, display it here 
               if (compare > 0) {
                 return (
 
@@ -105,19 +97,15 @@ class ExpList extends Component {
                         Expired on: {moment(spice.exp_date).format('YYYY-MM-DD')}
                       </Typography>
 
+                      {/* used the edit overlay to edit the spice */}
                       <CardActions className={classes.cardAction}>
-                        {/* <Button onClick={this.editingSpice} component={Link} to={'/editspice/' + spice_id} size="small">Edit Spice</Button> */}
                         <Overlay spice={spice} toggleState={this.toggleState} />
-                        {/* <Button onClick={() => this.props.history.push('/editspice/' + spice_id)} size="small">Edit Spice</Button> */}
                       </CardActions >
 
+                      {/* use the delete overlay to delete the spice */}
                       <CardActions className={classes.cardAction}>
                         <DeleteDialog toggleState={this.toggleState} spice={spice} />
-
-                        {/* <Button className={classes.button} onClick={() => this.deleteSpice(spice.id)} variant="outlined" color="primary" >Delete</Button> */}
                       </CardActions>
-
-
                     </CardContent>
                   </Card>
                 )
@@ -127,12 +115,13 @@ class ExpList extends Component {
 
               <h2 >Close to expiring spices</h2>
             </section>
+
+            {/* Loop again to look for expireing soon spices */}
             {this.props.store.spiceList.map((spice, i) => {
               let today = moment()
               let expDate = moment(spice.exp_date)
-              console.log(today)
-              console.log(expDate)
-              console.log(expDate.diff(today, 'days'))
+
+              // IF the spice is expiring in the next 30 days 
               if (today.diff(expDate, 'days') > -30 && today.diff(expDate, 'days') < 0) {
                 return (
                   <Card key={i} align="center" onClick={this.toggleState} className={classes.card}>
@@ -140,11 +129,9 @@ class ExpList extends Component {
                       <Typography justify="center" variant="h5" component="h2">
                         {spice.name}
                         <br />
-
                       </Typography>
 
                       <br />
-
 
                       <Typography component="p">
                         Will expire on: {moment(spice.exp_date).format('YYYY-MM-DD')}
@@ -152,11 +139,13 @@ class ExpList extends Component {
                         Only {expDate.diff(today, 'days')} days left!
                       </Typography>
 
+                      {/* used the edit overlay to edit the spice */}
                       <CardActions className={classes.cardAction}>
                         <Overlay toggleState={this.toggleState} spice={spice} />
                       </CardActions >
-                      <CardActions className={classes.cardAction}>
 
+                      {/* use the delete overlay to delete the spice */}
+                      <CardActions className={classes.cardAction}>
                         <DeleteDialog toggleState={this.toggleState} spice={spice} />
                       </CardActions>
 
