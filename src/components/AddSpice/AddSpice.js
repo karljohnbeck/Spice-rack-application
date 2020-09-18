@@ -7,21 +7,11 @@ import { Link } from 'react-router-dom';
 import { InputLabel, MenuItem, Input, withStyles, Grid, Select, Button, Card, TextField } from '@material-ui/core';
 
 import AddSpiceDialog from '../AddSpiceDialog/AddSpiceDialog'
+
 const styles = {
   gridContainer: {
     paddingLeft: '10px',
     paddingRight: '10px',
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
   },
   margin: {
     margin: '15px'
@@ -63,13 +53,12 @@ class AddSpice extends Component {
     list: [],
   };
 
+  // handle input changes
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
-  dateChange = event => {
-    console.log(event.target.value)
-  }
 
+// dispatched to addSpice saga
   addSpice = () => {
     this.props.dispatch({
       type: 'ADD_SPICE',
@@ -77,24 +66,20 @@ class AddSpice extends Component {
         name: this.state.name,
         exp_date: this.state.exp_date,
         categories_id: this.state.list,
-      }
-    })
-  }
+      }})}
+  // reset inputs
   clearState = () => {
     this.setState({
       name: '',
       exp_date: undefined,
       list: [],
-    })
-  }
+    })}
 
   render() {
     const { classes } = this.props;
     return (
       <div>
-
         <Grid alignItems="center" justify="center" container spacing={32} className={classes.gridContainer} >
-
           <Grid
             container
             spacing={32}
@@ -108,6 +93,7 @@ class AddSpice extends Component {
             <Grid align="center" item xl={12} xs={10}>
               <form>
                 <Card xs={12} >
+                  {/* name input */}
                   <TextField
                     onChange={this.handleChange}
                     value={this.state.name}
@@ -120,6 +106,7 @@ class AddSpice extends Component {
                       id: 'spice-name',
                     }} />
                   <br />
+                  {/* date input */}
                   <Input type='Date'
                     className={classes.margin}
                     value={this.state.exp_date || ''}
@@ -132,7 +119,7 @@ class AddSpice extends Component {
                     }}
                   />
                   <br />
-                  {/* Needs to be multi select eventually */}
+                  {/* allows multiple spices to be selected */}
                   <InputLabel className={classes.margin} htmlFor="category-simple">Categories</InputLabel>
                   <br />
                   <Select
@@ -155,10 +142,11 @@ class AddSpice extends Component {
                   <br />
 
                   <div className={classes.buttonZone} >
+                    {/* back sends you home */}
                     <Button component={Link} to='/user' className={classes.cancel} >Back</Button>
+                  {/* opens up the dialog after shipping the spice to the db */}
                     <AddSpiceDialog stateCheck={this.state.name} addSpice={this.addSpice} clearState={this.clearState} />
                   </div>
-
                 </Card>
               </form>
             </Grid>
