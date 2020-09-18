@@ -18,7 +18,7 @@ const styles = {
     },
     card: {
         minHeight: '65px',
-        minWidth: '300px'
+        minWidth: '350px'
     },
    
     img: {
@@ -30,7 +30,7 @@ const styles = {
     },
     text: {
         marginTop: '10px',
-        display: 'inline-block',
+        display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
     },
@@ -77,7 +77,7 @@ class EditCategory extends Component {
         })
     }
 
-    // dispatch to the saga and make sure name is atleast filled out
+    // dispatch to the saga and make sure name is at least filled out
     saveEdit = () => {
         if (this.state.name === "") {
             alert('A category name cannot be empty.')
@@ -97,7 +97,7 @@ class EditCategory extends Component {
         const { classes } = this.props;
         return (
 
-            <Card className={classes.card}>
+            <Card  className={classes.card}>
                 {this.state.isEdit ?
                     <div>
                         {/* Front side has imgs and name displayed  */}
@@ -106,13 +106,14 @@ class EditCategory extends Component {
                             fontWeight="fontWeightBold" 
                             variant="h4" 
                             component="h1"
+                            
                             className={classes.text} 
                             >
                             {this.props.category.name}
                         </Typography>
                         {/* click and icon to either delete the category or edit it */}
                         <DeleteCategoryDialog id={this.props.category.id}/>
-\                        <img className={classes.img} onClick={this.toggleState} alt="edit" src={editIcon} />
+                       <img className={classes.img} onClick={this.toggleState} alt="edit" src={editIcon} />
 
                     </div>
                     :

@@ -34,18 +34,19 @@ function DeleteDialog(props) {
     };
     const { classes } = props;
 
-
     const handleClose = () => {
         props.toggleState()
         setOpen(false);
     };
 
     const handleDelete = (id) => {
-
         props.dispatch({ type: 'DELETE_SPICE', payload: id })
         handleClose()
     }
 
+
+    // Basic dleete conformation, need to hit delete twice to make sure you really 
+    // want to delete, used in both the spice delete cases
     return (
         <div>
             <Button className={classes.button} variant="outlined" color="primary" onClick={handleClickOpen}>

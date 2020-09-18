@@ -61,12 +61,11 @@ function DeleteCategoryDialog(props) {
         handleClose()
     }
 
+    // basic delete confomation dialog
     return (
         <div>
             <img className={classes.img} onClick={handleClickOpen} src={deleteIcon} alt="delete" />
-            {/* <Button className={classes.button} variant="outlined" color="primary" onClick={handleClickOpen}>
-                Delete
-            </Button> */}
+
 
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Delete category</DialogTitle>
