@@ -29,11 +29,17 @@ const styles = {
     margin: {
         margin: '15px',
     },
+    
     button: {
         width: '80px',
         height: '60px',
         margin: '0',
-        fontSize: '15x'
+        fontSize: '15x',
+        backgroundColor: "#6e7e85",
+        color: 'white'
+    },
+    cardAction: {
+        display: 'inline-block'
     },
     pic: {
         width: '42px',
@@ -42,7 +48,7 @@ const styles = {
     },
     chip: {
         margin: 2,
-        backgroundColor: '#FFE2B6',
+        backgroundColor: '#ffe2b6'
     },
 };
 
@@ -72,7 +78,7 @@ class SpiceList extends Component {
                     <Card align="center" onClick={this.toggleState} >
                         <CardContent>
                             {/* <img className={classes.pic} src={flip}/> */}
-                            <Typography justify="center" fontWeight="fontWeightBold" variant="h4" component="h1">
+                            <Typography className={classes.top} justify="center" fontWeight="fontWeightBold" variant="h4" component="h1">
                                 {this.props.spice.name}
                             </Typography>
 

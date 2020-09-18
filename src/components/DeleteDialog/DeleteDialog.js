@@ -13,6 +13,8 @@ const styles = {
     button: {
         width: '80px',
         height: '60px',
+        backgroundColor: "#6e7e85",
+        color: 'white'
     },
     margin: {
         margin: '3px'

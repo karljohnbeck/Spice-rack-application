@@ -8,14 +8,14 @@
 
 .nav {
   margin: 0 0 30px;
-  background-color: #FFAD30;
+  background-color: #ffbb52;
   overflow: hidden;
 }
 
 .nav-link {
   float: left;
   color: #000000;
-  background-color: #FFAD30;
+  background-color: #ffbb52;
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
@@ -29,7 +29,7 @@
 }
 
 .nav-link:hover {
-  background-color: #FFAD30;
+  background-color: #ffbb52;
 }
 
 .nav-right {

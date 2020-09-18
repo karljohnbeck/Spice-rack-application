@@ -6,15 +6,16 @@ import { Link } from 'react-router-dom';
 import EditCategory from '../EditCategory/EditCategory'
 
 // material ui 
-import { Typography, InputLabel, MenuItem, Input, withStyles, Grid, Select, Button, Card, TextField } from '@material-ui/core';
+import { withStyles, Grid, Button, Card, TextField } from '@material-ui/core';
 
 const styles = {
   gridContainer: {
     paddingLeft: '10px',
     paddingRight: '10px',
   },
-  card: {
-
+  titleBar: {
+    backgroundColor: '#ffe2b6',
+    width: '100%',
   },
   cardAction: {
     backgroundColor: 'yellow',
@@ -33,6 +34,12 @@ const styles = {
   margin: {
     margin: '15px'
   },
+  editButton: {
+    margin: '5px',
+
+    backgroundColor: "#6e7e85",
+    color: 'white'
+  }
 };
 
 // Basic class component structure for React with default state
@@ -43,7 +50,7 @@ class Categories extends Component {
   state = {
     heading: 'Categories Component',
     isEdit: true,
-    name:  "",
+    name: "",
   };
 
   handleChange = event => {
@@ -52,11 +59,11 @@ class Categories extends Component {
 
   addCategory = () => {
     if (this.state.name === "") {
-      alert('no')
+      alert('A category name cannot be empty.')
     } else {
-    this.props.dispatch({type: 'POST_CATEGORY', payload: this.state})
-    this.setState({name: ''})
-  }
+      this.props.dispatch({ type: 'POST_CATEGORY', payload: this.state })
+      this.setState({ name: '' })
+    }
   }
 
   render() {
@@ -65,20 +72,24 @@ class Categories extends Component {
 
       <div>
         <Grid justify="center" container spacing={32} className={classes.gridContainer} >
-        <Grid
-          container
-          spacing={32}
-          direction="column"
-          alignItems="center"
-        >
-          <h2> Add a category</h2>
+          <Grid
+            container
+            spacing={32}
+            direction="column"
+            alignItems="center"
+          >
+
+            <section align="center" justify= "center" className={classes.titleBar}>
+              <h2 > Add a category</h2>
+            </section>
+
             <Grid item xs={11} align="center">
               <Card className={classes.card} >
                 {/* <Typography variant="h5" component="h2">
                   Add a category
                 </Typography> */}
                 <TextField onChange={this.handleChange}
-                variant="filled"
+                  variant="filled"
                   className={classes.margin}
                   id="spice-name"
                   label="Category name"
@@ -86,19 +97,25 @@ class Categories extends Component {
                   inputProps={{
                     name: 'name',
                     id: 'spice-name',
-                  
+
                   }} />
                 <br />
-                <Button variant="outlined" component={Link} to='/user' className={classes.margin}>Cancel</Button>
-                <Button variant="outlined" onClick={this.addCategory} className={classes.margin}>Add Category</Button>
+                <Button variant="outlined" component={Link} to='/user' className={classes.editButton}>Cancel</Button>
+                <Button variant="outlined" onClick={this.addCategory} className={classes.editButton}>Add Category</Button>
               </Card>
+              </Grid>
+              <section align="center" justify= "center" className={classes.titleBar}>
 
               <h2>Manage Categories</h2>
+              
+              </section>
+              <Grid item xs={11} align="center">
+
               {this.props.store.uniqueCategories.map((category, i) => {
                 return (
                   <div key={i}>
-                  <br />
-                  <EditCategory  category={category} />
+                    <br />
+                    <EditCategory category={category} />
                   </ div>
                 )
               })}

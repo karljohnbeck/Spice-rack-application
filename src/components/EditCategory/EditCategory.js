@@ -47,6 +47,12 @@ const styles = {
     margin: {
         margin: '5px'
     },
+    editButton: {
+        margin: '5px',
+
+        backgroundColor: "#6e7e85",
+        color: 'white'
+    }
 };
 
 // Basic class component structure for React with default state
@@ -81,8 +87,10 @@ class EditCategory extends Component {
     // }
 
     saveEdit = () => {
-        console.log(this.state.name)
-        this.props.dispatch(
+        if (this.state.name === "") {
+            alert('A category name cannot be empty.')
+          } else {        
+              this.props.dispatch(
             {
                 type: 'EDIT_CATEGORY',
                 payload: {
@@ -91,6 +99,7 @@ class EditCategory extends Component {
                 }
             })
         this.toggleState()
+          }
     }
 
     render() {
@@ -130,8 +139,8 @@ class EditCategory extends Component {
                             fullWidth
                             onChange={this.handleChange}
                         />
-                        <Button className={classes.margin} onClick={this.toggleStatePlus} variant="outlined">Cancel</Button>
-                        <Button className={classes.margin} onClick={this.saveEdit} variant="outlined">Save</Button>
+                        <Button className={classes.editButton} onClick={this.toggleStatePlus} variant="outlined">Cancel</Button>
+                        <Button className={classes.editButton} onClick={this.saveEdit} variant="outlined">Save</Button>
 
                     </div>
                 }

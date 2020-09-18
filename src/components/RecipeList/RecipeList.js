@@ -14,7 +14,20 @@ const styles = {
   img: {
     maxHeight: "300px",
     maxWidth: "300px",
-  }
+    
+  },
+  button: {
+    width: '80px',
+    height: '60px',
+    backgroundColor: "#6e7e85",
+    color: 'white',
+    // display: 'inline-block'
+},
+titleBar: {
+  backgroundColor: '#ffe2b6',
+  width: '100%',
+  marginTop: '-8px'
+},
 }
 
 // Basic class component structure for React with default state
@@ -38,6 +51,7 @@ class RecipeList extends Component {
     const { classes } = this.props;
     return (
       <div>
+        
         <Grid container spacing={32}
         // className={classes.gridContainer}
         >
@@ -50,9 +64,13 @@ class RecipeList extends Component {
             alignItems="center"
             justify="center"
           >
+            <section align="center" justify= "center" className={classes.titleBar}>
             <h2>Recipes containing:
+            
                     <br />
               {this.props.match.params.search}</h2>
+              </section>
+            
 
             {this.props.store.recipeReducer.map((recipe, i) => {
               if(this.props.store.recipeReducer.length === []) {
@@ -69,13 +87,13 @@ class RecipeList extends Component {
                     image={recipe.recipe.image}
                     title={recipe.recipe.label}
                   />
-                  <CardContent>
+                  <CardContent align="center" justify= "center">
                     <Typography gutterBottom variant="h5" component="h2">
                       {recipe.recipe.label}
                     </Typography>
                     <Typography gutterBottom variant="h6" component="h2">
                       {/* {recipe.recipe.url} */}
-                      <Button target="_blank" href={recipe.recipe.url}>Open Recipe</Button>
+                      <Button className={classes.button} target="_blank" href={recipe.recipe.url}>Open Recipe</Button>
 
                     </Typography>
                   </CardContent>

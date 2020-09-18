@@ -17,7 +17,14 @@ const styles = {
     },
     margin: {
         margin: '3px'
-    }
+    },
+    button: {
+        width: '80px',
+        height: '60px',
+        backgroundColor: "#6e7e85",
+        color: 'white',
+        display: 'inline-block'
+    },
 }
 
 // Basic functional component structure for React with default state
@@ -40,9 +47,13 @@ function AddSpiceDialog(props) {
     };
 
     const handleAdd = (id) => {
+        if (props.stateCheck === ''){
+            alert('Please fill out at least the name of the spice.')
+        } else {
         handleClickOpen()
         props.addSpice()
         props.clearState()
+        }
 
     }
 
@@ -66,7 +77,7 @@ function AddSpiceDialog(props) {
                         Return home
                 </Button>
                     <Button onClick={handleClose} className={classes.button} variant="outlined" color="primary" >
-                        Add another spice
+                        Add more
                 </Button>
                 </DialogActions>
             </Dialog>

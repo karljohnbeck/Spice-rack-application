@@ -32,7 +32,16 @@ const styles = {
     margin: '3px',
     textAlign: 'center',
   },
- 
+  titleBar: {
+    marginTop: '-8px',
+    backgroundColor: '#ffe2b6',
+    width: '100%',
+  },
+  titleBarClose: {
+    backgroundColor: '#ffe2b6',
+    width: '100%',
+  },
+
 };
 
 // Basic class component structure for React with default state
@@ -54,14 +63,14 @@ class ExpList extends Component {
 
   deleteSpice = (spice_id) => {
     this.props.dispatch({ type: 'DELETE_SPICE', payload: spice_id })
-}
+  }
 
   render() {
     const { classes } = this.props;
 
     return (
       <div>
-        
+
         <Grid container spacing={32} className={classes.gridContainer} >
           <Grid
             container
@@ -70,7 +79,11 @@ class ExpList extends Component {
             alignItems="center"
             justify="center"
           >
-            <h2 >Expired Spices</h2>
+            <section align="center" justify="center" className={classes.titleBar}>
+
+              <h2 >Expired spices</h2>
+            </section>
+
             {this.props.store.spiceList.map((spice, i) => {
               let today = moment()
               let expDate = moment(spice.exp_date)
@@ -83,12 +96,12 @@ class ExpList extends Component {
 
                   <Card key={i} align="center" className={classes.card}>
                     <CardContent>
-                      <Typography justify="center" variant="h5" component="h2">
+                      <Typography justify="center" variant="h4" component="h2">
                         {spice.name}
                         <br />
                       </Typography>
                       <br />
-                      <Typography className={classes.cardPlus} border={1} component="h6">
+                      <Typography className={classes.cardPlus} component="h5">
                         Expired on: {moment(spice.exp_date).format('YYYY-MM-DD')}
                       </Typography>
 
@@ -99,7 +112,7 @@ class ExpList extends Component {
                       </CardActions >
 
                       <CardActions className={classes.cardAction}>
-                      <DeleteDialog toggleState={this.toggleState} spice={spice}/>
+                        <DeleteDialog toggleState={this.toggleState} spice={spice} />
 
                         {/* <Button className={classes.button} onClick={() => this.deleteSpice(spice.id)} variant="outlined" color="primary" >Delete</Button> */}
                       </CardActions>
@@ -108,17 +121,19 @@ class ExpList extends Component {
                     </CardContent>
                   </Card>
                 )
-              } 
+              }
             })}
-              
+            <section align="center" justify="center" className={classes.titleBarClose}>
+
               <h2 >Close to expiring spices</h2>
+            </section>
             {this.props.store.spiceList.map((spice, i) => {
               let today = moment()
               let expDate = moment(spice.exp_date)
               console.log(today)
               console.log(expDate)
               console.log(expDate.diff(today, 'days'))
-              if (today.diff(expDate, 'days') > -30 && today.diff(expDate, 'days') < 0) { 
+              if (today.diff(expDate, 'days') > -30 && today.diff(expDate, 'days') < 0) {
                 return (
                   <Card key={i} align="center" onClick={this.toggleState} className={classes.card}>
                     <CardContent>
@@ -142,7 +157,7 @@ class ExpList extends Component {
                       </CardActions >
                       <CardActions className={classes.cardAction}>
 
-                      <DeleteDialog toggleState={this.toggleState} spice={spice}/>
+                        <DeleteDialog toggleState={this.toggleState} spice={spice} />
                       </CardActions>
 
                     </CardContent>

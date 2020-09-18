@@ -34,6 +34,16 @@ const styles = {
   margin: {
     margin: '15px'
   },
+  titleBar: {
+    backgroundColor: '#ffe2b6',
+    width: '100%',
+  },
+  button: {
+    width: '80px',
+    height: '60px',
+    backgroundColor: "#6e7e85",
+    color: 'white'
+  },
 };
 
 // Basic class component structure for React with default state
@@ -69,8 +79,8 @@ class AddSpice extends Component {
   clearState = () => {
     this.setState({
       name: '',
-    exp_date: undefined,
-    list: [],
+      exp_date: undefined,
+      list: [],
     })
   }
 
@@ -78,74 +88,75 @@ class AddSpice extends Component {
     const { classes } = this.props;
     return (
       <div>
+
         <Grid alignItems="center" justify="center" container spacing={32} className={classes.gridContainer} >
-          
-            <Grid
+
+          <Grid
             container
             spacing={32}
             direction="column"
             alignItems="center"
             justify="center"
           >
-          
-            <Grid align="center"  item xl={12} xs={10}>
-              <Card  >
-                <Typography
-                  align="center"
-                  justify="center"
-                  variant="h5"
-                  className={classes.margin}>
-                  Add a new spice:
-              </Typography>
-                <TextField 
-                onChange={this.handleChange}
-                value={this.state.name}
-                  className={classes.margin}
-                  id="spice-name"
-                  label="Spice name"
-                  inputProps={{
-                    name: 'name',
-                    id: 'spice-name',
-                  }} />
-                <br />
-                <Input type='Date' 
-                className={classes.margin}
-                 value={this.state.exp_date || ''}                 
-                 onChange={this.handleChange}
-                  variant="outlined"
-                  id="exp-date"
-                  inputProps={{
-                    name: 'exp_date',
-                    id: 'exp-date',
-                  }}
-                   />
-                <br />
-                {/* Needs to be multi select eventually */}
-                <InputLabel className={classes.margin} htmlFor="category-simple">Categories</InputLabel>
-                <Select
-                  className={classes.margin}
-                  value={this.state.list}
-                  onChange={this.handleChange}
-                  inputProps={{
-                    name: 'list',
-                    id: 'category-simple',
-                  }}
-                  multiple>
-                  {this.props.store.uniqueCategories.map((item, i) => {
-                    return (
-                      <MenuItem key={i} value={item.id} >
-                        {String(item.name)}
-                      </MenuItem>
-                    )
-                  })}
-                </Select>
-                <br />
-                <Button component={Link} to='/user' className={classes.margin}>Cancel</Button>
+            <section align="center" justify="center" className={classes.titleBar}>
+              <h2 >Add a new spice</h2>
+            </section>
 
-                {/* <Button onClick={this.addSpice} className={classes.margin}>Add Spice</Button> */}
-                <AddSpiceDialog addSpice={this.addSpice} clearState={this.clearState}/>
+            <Grid align="center" item xl={12} xs={12}>
+              <form>
+                <Card xs={12} >
+                  <TextField
+                    onChange={this.handleChange}
+                    value={this.state.name}
+                    className={classes.margin}
+                    id="spice-name"
+                    label="Spice name"
+                    required
+                    inputProps={{
+                      name: 'name',
+                      id: 'spice-name',
+                    }} />
+                  <br />
+                  <Input type='Date'
+                    className={classes.margin}
+                    value={this.state.exp_date || ''}
+                    onChange={this.handleChange}
+                    variant="outlined"
+                    id="exp-date"
+                    inputProps={{
+                      name: 'exp_date',
+                      id: 'exp-date',
+                    }}
+                  />
+                  <br />
+                  {/* Needs to be multi select eventually */}
+                  <InputLabel className={classes.margin} htmlFor="category-simple">Categories</InputLabel>
+                  <br />
+                  <Select
+                    className={classes.margin}
+                    value={this.state.list}
+                    onChange={this.handleChange}
+                    inputProps={{
+                      name: 'list',
+                      id: 'category-simple',
+                    }}
+                    multiple>
+                    {this.props.store.uniqueCategories.map((item, i) => {
+                      return (
+                        <MenuItem key={i} value={item.id} >
+                          {String(item.name)}
+                        </MenuItem>
+                      )
+                    })}
+                  </Select>
+                  <br />
+                  <Button component={Link} to='/user' className={classes.button} >Cancel</Button>
 
-              </Card>
+                  {/* <Button onClick={this.addSpice} className={classes.margin}>Add Spice</Button> */}
+                  <AddSpiceDialog stateCheck={this.state.name} addSpice={this.addSpice} clearState={this.clearState} />
+
+                </Card>
+              </form>
             </Grid>
           </Grid>
         </Grid>

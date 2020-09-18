@@ -15,9 +15,15 @@ const styles = {
     button: {
         width: '80px',
         height: '60px',
+        backgroundColor: "#6e7e85",
+        color: 'white'
     },
     margin: {
         margin: '3px'
+    },
+    overlayButton: {
+        backgroundColor: "#6e7e85",
+        color: 'white',
     }
 }
 
@@ -63,16 +69,22 @@ function OverlayEditButton(props) {
         console.log(categories)
     }
     const handleEdit = () => {
-        props.dispatch({
-            type: 'EDIT_SPICE',
-            payload: {
-                id: props.spice.id,
-                name: name,
-                exp_date: exp_date,
-                categories_id: categories,
-            }
-        })
-        handleClose()
+        if (name === '') {
+            alert('Please fill out at least the name of the spice.')
+        } else {
+
+
+            props.dispatch({
+                type: 'EDIT_SPICE',
+                payload: {
+                    id: props.spice.id,
+                    name: name,
+                    exp_date: exp_date,
+                    categories_id: categories,
+                }
+            })
+            handleClose()
+        }
     }
 
     return (
@@ -139,10 +151,10 @@ function OverlayEditButton(props) {
                     </Select>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} variant="outlined" color="primary">
+                    <Button className={classes.overlayButton} onClick={handleClose} variant="outlined" color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={handleEdit} variant="outlined" color="primary">
+                    <Button className={classes.overlayButton} onClick={handleEdit} variant="outlined" color="primary">
                         Save changes
                     </Button>
                 </DialogActions>
