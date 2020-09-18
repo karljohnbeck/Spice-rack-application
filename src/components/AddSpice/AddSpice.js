@@ -4,21 +4,13 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import { Link } from 'react-router-dom';
 
 // material ui 
-import { Typography, InputLabel, MenuItem, Input, withStyles, Grid, Select, Button, Card, TextField } from '@material-ui/core';
+import { InputLabel, MenuItem, Input, withStyles, Grid, Select, Button, Card, TextField } from '@material-ui/core';
 
 import AddSpiceDialog from '../AddSpiceDialog/AddSpiceDialog'
 const styles = {
   gridContainer: {
     paddingLeft: '10px',
     paddingRight: '10px',
-  },
-  card: {
-    minHeight: '300px',
-    maxHeight: '300px',
-    minWidth: '300px'
-  },
-  cardAction: {
-    backgroundColor: 'yellow',
   },
   bullet: {
     display: 'inline-block',
@@ -42,8 +34,20 @@ const styles = {
     width: '80px',
     height: '60px',
     backgroundColor: "#6e7e85",
-    color: 'white'
+    color: 'white',
+    display: 'flex',
   },
+  buttonZone: {
+    display: 'flex',
+  },
+  cancel: {
+    width: '80px',
+    height: '60px',
+    backgroundColor: "#6e7e85",
+    color: 'white',
+    float: 'left',
+    margin: '15px'
+  }
 };
 
 // Basic class component structure for React with default state
@@ -94,7 +98,6 @@ class AddSpice extends Component {
           <Grid
             container
             spacing={32}
-            direction="column"
             alignItems="center"
             justify="center"
           >
@@ -102,7 +105,7 @@ class AddSpice extends Component {
               <h2 >Add a new spice</h2>
             </section>
 
-            <Grid align="center" item xl={12} xs={12}>
+            <Grid align="center" item xl={12} xs={10}>
               <form>
                 <Card xs={12} >
                   <TextField
@@ -150,10 +153,11 @@ class AddSpice extends Component {
                     })}
                   </Select>
                   <br />
-                  <Button component={Link} to='/user' className={classes.button} >Cancel</Button>
 
-                  {/* <Button onClick={this.addSpice} className={classes.margin}>Add Spice</Button> */}
-                  <AddSpiceDialog stateCheck={this.state.name} addSpice={this.addSpice} clearState={this.clearState} />
+                  <div className={classes.buttonZone} >
+                    <Button component={Link} to='/user' className={classes.cancel} >Back</Button>
+                    <AddSpiceDialog stateCheck={this.state.name} addSpice={this.addSpice} clearState={this.clearState} />
+                  </div>
 
                 </Card>
               </form>

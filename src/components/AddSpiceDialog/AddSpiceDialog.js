@@ -1,20 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import moment from 'moment';
 
 import { withStyles } from '@material-ui/core/styles';
 import {
-    Button, TextField, Dialog, DialogActions,
-    DialogContent, DialogContentText, DialogTitle, Input,
-    InputLabel, Select, MenuItem
+    Button, Dialog, DialogActions,
+    DialogContent, DialogContentText, DialogTitle,
 } from '@material-ui/core';
 
 const styles = {
-    button: {
-        
-    },
     margin: {
         margin: '3px'
     },
@@ -23,8 +18,14 @@ const styles = {
         height: '60px',
         backgroundColor: "#6e7e85",
         color: 'white',
-        display: 'inline-block'
+        float: 'right',
+        margin: '15px',
     },
+    wrapper: {
+        float: 'left',
+        display: 'flex',
+        marginLeft: '90px' 
+    }
 }
 
 // Basic functional component structure for React with default state
@@ -49,10 +50,12 @@ function AddSpiceDialog(props) {
     const handleAdd = (id) => {
         if (props.stateCheck === ''){
             alert('Please fill out at least the name of the spice.')
+            return false
         } else {
         handleClickOpen()
         props.addSpice()
         props.clearState()
+        return true
         }
 
     }
@@ -60,7 +63,7 @@ function AddSpiceDialog(props) {
     
 
     return (
-        <div>
+        <div className={classes.wrapper}>
             <Button className={classes.button} onClick={handleAdd}>
                 Add Spice 
             </Button>
