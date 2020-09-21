@@ -75,7 +75,7 @@ class ExpList extends Component {
 
               <h2 >Expired spices</h2>
             </section>
-
+            
             {/* Check all the spices on the spice list */}
             {this.props.store.spiceList.map((spice, i) => {
               let today = moment()

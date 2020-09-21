@@ -1,6 +1,86 @@
+# Project Name: Spice-rack Solo project
+
+## Description
+
+_Duration: 2 weeks_
+
+This project was to create an application that could allow a suer to keep a record of all the spices they have at home while they are out shopping at the grocery store. after logging in to the app a user could record all the spices they have and sort them into categories they created. The application also keeps track of expiration dates and has a page where you can see if you have any spices that are going to or are expired. Recipes can also be looked up for a specific spice as well if a user want to use up a spice they have in their records. 
+
+## Screen Shot
+
+Work in progress
+
+_Below is an image of the register page._
+
+![sample register page](/sample/register.png)
+
+_Below is an image of the home page._
+![sample home page](/sample/home.png)
+
+_Below is an view of the categories page._
+
+![sample categories page](/sample/categories.png)
+
+_Below is an image of the expiring view._
+
+![sample expire page](/sample/expire.png)
+
+_Below is an image one of the recipe page for garlic powder._
+
+![sample recipe page](/sample/recipe.png)
+
+
+
+
+
+## Usage
+
+work in progress. 
+
+<!-- - To open the app:
+
+1. Create a database using the command lines in the database.sql file (I used postico to talk with PostgreSQL).
+2. Turn on the server with 'npm run server' in the terminal.
+3. In a new terminal window, turn on the client with 'npm run client'.
+4. Go to localhost:3000 in your browser.
+
+- App use: 
+
+-- View movie details -- 
+1. Click any poster displayed on the page to view more information of it. 
+2. Click either "home" at the top of the page or "back at the bottom".
+
+-- Add a movie to the site -- 
+1. Click the "add a movie" button a the top of the page.
+2. fill out all the fields on the page and select a genre from the dropdown that best describes the move.
+3. When finished, click the "Save" button, this will save the movie and redirect you to the home page.
+4. If you want to leave the page, either click the "home" button at the top or the "cancel" button at the bottom. -->
+
+## Built With
+
+- JavaScript
+- Bootstrap
+- React
+- CSS
+- PostgreSQL
+- Axios
+- Pg
+- Redux
+- Sagas
+- Material-UI
+- Edamam API
+
+
+
+## Acknowledgement
+Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped me to make this application a reality.
+
+## Support
+If you have suggestions or issues, please email me
+
 # Prime Project
 
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+<!-- This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
 
 We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
 
@@ -118,4 +198,4 @@ This code is also heavily commented. We recommend reading through the comments, 
 
 ## Update Documentation
 
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
+Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2 -->

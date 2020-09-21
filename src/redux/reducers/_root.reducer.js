@@ -4,7 +4,7 @@ import user from './user.reducer';
 import spiceList from './spiceList.reducer'
 import categoriesList from './categoriesList.reducer'
 import uniqueCategories from './uniqueUserCategories.reducer'
-import EditingSpice from './editingSpice.reducer'
+// import EditingSpice from './editingSpice.reducer'
 import recipeReducer from './recipe.reducer'
 
 // rootReducer is the primary reducer for our entire project
@@ -19,7 +19,7 @@ const rootReducer = combineReducers({
   spiceList,
   categoriesList,
   uniqueCategories,
-  EditingSpice,
+  // EditingSpice,
   recipeReducer,
 });
 

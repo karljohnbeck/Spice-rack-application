@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import AddSpice from '../AddSpice/AddSpice';
+// import EditSpice from '../EditSpice/EditSpice';
 import Categories from '../Categories/Categories'
 import Expiration from '../ExpList/ExpList'
 import RecipeList from '../RecipeList/RecipeList'
