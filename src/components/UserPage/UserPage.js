@@ -5,7 +5,7 @@ import SpiceList from '../SpiceList/SpiceList'
 import { Link } from 'react-router-dom';
 
 // material ui 
-import { Typography, MenuItem, withStyles, Grid, Select, Button, Card, TextField, FormControl } from '@material-ui/core';
+import { Typography, MenuItem, withStyles, Grid, Select, Button, Card, TextField, FormControl, Input } from '@material-ui/core';
 
 // used for the search filter on the page
 let hasCategory = false
@@ -40,6 +40,10 @@ const styles = {
     backgroundColor: "#6e7e85",
     color: 'white'
   },
+  filter: {
+    marginTop: '15px',
+
+  }
 };
 
 class UserPage extends Component {
@@ -77,10 +81,10 @@ class UserPage extends Component {
         <section align="center"
           justify="center" className={classes.filterBar}>
 
-          <h3>Spice filter:</h3>
+          <h3 className={classes.filter}>Spice filter</h3>
 
           {/* search by input field */}
-          <TextField inputProps={{ min: 0, style: { textAlign: 'center' } }} className={classes.select} onChange={this.differentSearch} id="filled-basic" label="Search by name" />
+          <TextField   className={classes.select} onChange={this.differentSearch} id="filled-basic" label="Search by name" />
 
           <br />
           {/* Search by the categories */}
@@ -90,6 +94,7 @@ class UserPage extends Component {
 
               value={this.state.categorySelected}
               onChange={this.handleChange}
+              autoComplete='off'
               inputProps={{
                 name: 'categorySelected',
                 id: 'category-simple',

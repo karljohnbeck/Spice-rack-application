@@ -20,7 +20,6 @@ const styles = {
         minHeight: '65px',
         minWidth: '350px'
     },
-   
     img: {
         marginTop: '10px',
         Width: '45px',
@@ -33,9 +32,6 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-    },
-    pos: {
-        marginBottom: 12,
     },
     margin: {
         margin: '5px'

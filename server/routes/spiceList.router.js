@@ -18,7 +18,8 @@ FROM "spices"
 LEFT JOIN "spices_categories" ON "spices".id = "spices_categories".spices_id
 LEFT JOIN "categories" ON "categories".id = "spices_categories".categories_id
 WHERE "spices".user_id = $1
-GROUP BY "spices".id; `
+GROUP BY "spices".id
+ORDER BY spices.name ASC; `
     pool.query(queryText, [req.user.id])
         .then(result => {
             res.send(result.rows)

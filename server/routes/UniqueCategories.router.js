@@ -12,7 +12,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('req.user', req.user.id);
     let queryText = 
     `SELECT * FROM "categories"
-WHERE  "categories".user_id = $1;`
+WHERE  "categories".user_id = $1
+ORDER BY categories.name ASC;`
     pool.query(queryText, [req.user.id])
         .then(result => {
             res.send(result.rows)

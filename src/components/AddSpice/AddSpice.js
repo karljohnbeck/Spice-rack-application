@@ -60,9 +60,9 @@ class AddSpice extends Component {
 
   autoFill = () => {
     this.setState({
-      name: 'Chili Powder',
+      name: 'Oregano',
       exp_date: '2021-08-22',
-      list: [28, 32], 
+      list: [35, 33], 
   })
 }
 
