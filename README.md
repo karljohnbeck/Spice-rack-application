@@ -34,7 +34,6 @@ _Below is an image one of the recipe page for garlic powder._
 
 ## Usage
 
-work in progress. 
 
 - To open the app:
 
@@ -86,7 +85,7 @@ The top of the page has a nav bar with the app name that when clicked on Will re
 2. On the page 10 recipes are displayed that contain the spice of the card you originally flipped from the main page. 
 3. Clicking the "go to recipe" button will open the recipe up in a new tab in your internet browser.
 
--- logging out -- 
+-- Logging out -- 
 1. When done with the app click to the hamburger menu on the top right of the app.
 2. Click the "log out" button. 
 
