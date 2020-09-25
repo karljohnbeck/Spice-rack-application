@@ -8,21 +8,24 @@ This project was to create an application that could allow a suer to keep a reco
 
 ## Screen Shot
 
-Work in progress
-
 _Below is an image of the register page._
+
 ![sample register page](/sample/register.png)
 
 _Below is an image of the home page._
+
 ![sample home page](/sample/home.png)
 
 _Below is an view of the categories page._
+
 ![sample categories page](/sample/categories.png)
 
 _Below is an image of the expiring view._
+
 ![sample expire page](/sample/expire.png)
 
 _Below is an image one of the recipe page for garlic powder._
+
 ![sample recipe page](/sample/recipes.png)
 
 
