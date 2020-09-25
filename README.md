@@ -12,22 +12,23 @@ Work in progress
 
 _Below is an image of the register page._
 
-![sample register page](/sample/register.png)
+![sample register page](/sample/register.png =250x250)
 
 _Below is an image of the home page._
-![sample home page](/sample/home.png)
+![sample home page](/sample/home.png =250x250)
 
 _Below is an view of the categories page._
 
-![sample categories page](/sample/categories.png)
+![sample categories page](/sample/categories.png =250x250)
 
 _Below is an image of the expiring view._
 
-![sample expire page](/sample/expire.png)
+![sample expire page](/sample/expire.png =250x250)
 
 _Below is an image one of the recipe page for garlic powder._
 
-![sample recipe page](/sample/recipe.png)
+![sample recipe page](/sample/recipie.png =250x250)
+
 
 
 
