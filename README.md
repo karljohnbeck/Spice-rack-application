@@ -4,7 +4,7 @@
 
 _Duration: 2 weeks_
 
-This project was to create an application that could allow a suer to keep a record of all the spices they have at home while they are out shopping at the grocery store. after logging in to the app a user could record all the spices they have and sort them into categories they created. The application also keeps track of expiration dates and has a page where you can see if you have any spices that are going to or are expired. Recipes can also be looked up for a specific spice as well if a user want to use up a spice they have in their records. 
+This project was to create a mobile first application that could allow a user to keep a record of all the spices they have at home while they are out shopping at the grocery store. after logging in to the app a user could record all the spices they have and sort them into categories they created. The application also keeps track of expiration dates and has a page where you can see if you have any spices that are going to or are expired. Recipes can also be looked up for a specific spice as well if a user want to use up a spice they have in their records. 
 
 ## Screen Shot
 
@@ -36,7 +36,7 @@ _Below is an image one of the recipe page for garlic powder._
 
 work in progress. 
 
-<!-- - To open the app:
+- To open the app:
 
 1. Create a database using the command lines in the database.sql file (I used postico to talk with PostgreSQL).
 2. Turn on the server with 'npm run server' in the terminal.
@@ -45,15 +45,50 @@ work in progress.
 
 - App use: 
 
--- View movie details -- 
-1. Click any poster displayed on the page to view more information of it. 
-2. Click either "home" at the top of the page or "back at the bottom".
+-- Register -- 
+1. If not already on the registration page, click register below the login form. 
+2. Enter in a user name and a password, the username needs to be unique form all other users.
+3. after registering you will be brought to the sites home page.
 
--- Add a movie to the site -- 
-1. Click the "add a movie" button a the top of the page.
-2. fill out all the fields on the page and select a genre from the dropdown that best describes the move.
-3. When finished, click the "Save" button, this will save the movie and redirect you to the home page.
-4. If you want to leave the page, either click the "home" button at the top or the "cancel" button at the bottom. -->
+-- Nav bar -- 
+The top of the page has a nav bar with the app name that when clicked on Will return the user to the home page and a hamburger menu to bring the user to different views. 
+
+-- Main page -- 
+1. After registering, a user will need to add cateogiries and spices to the app.
+2. Once spices are added, cards will appear on the main page what when clicked will have 4 buttons available to interact with: Delete, Edit, Recipe, Back.
+3. Recipe brings the user to the recipe view (see Recipe view below)
+4. Edit brings up a Dialog where you can change auto populated inputs and either click "save" to save the changes or "cancel" to keep old information the same.
+5. Delete will open a conformation dialog what you can either click "delete" to delete the spice or "cancel" to not delete.
+6. Back will flip the card back to its original view. 
+
+-- Add/Edit/Delete a Category -- 
+1. click to the hamburger menu on the top right of the app 
+2. click the "Categories" option where you are redirected to the categories view
+3. On the top of the page you can add a Category to the app by filling in the input and clicking "add category".
+4. To edit a category, click the edit icon (pencil), an input will be displayed and when you update and click "Save" the category will be updated. to cancel the edit click "Cancel".
+5. to delete a category, click the delete icon (trashcan), and a dialog will appear. click "delete" to confirm the delete, or click "cancel" to cancel the delete.
+
+-- Adding a spice -- 
+1. Click the "add a spice" button on the add spice card on the center of the page.
+2. Fill out all the fields on the page and select any Categories you would like to add to that spice.
+3. When finished, click the "Save" button, this will save the Spice and open a dialog.
+4. On the Dialog you can either click "Add More" to stay on the page to add more spices to your account, or "return home" to head back to the main page.
+
+-- Expiration view -- 
+1. click to the hamburger menu on the top right of the app 
+2. click the "Expiration" option where you are redirected to the Expiration view
+3. Here Spices that are 30 days from expiring and expired spices are seen. If none are close to expiring and none are expired, nothing will display 
+4. a user can edit the spice and delete the spice from this page. 
+
+-- Recipe view -- 
+
+1. After clicking the "recipe" button on the back side of the card the user is brought to a recipe page.
+2. On the page 10 recipes are displayed that contain the spice of the card you originally flipped from the main page. 
+3. Clicking the "go to recipe" button will open the recipe up in a new tab in your internet browser.
+
+-- logging out -- 
+1. When done with the app click to the hamburger menu on the top right of the app.
+2. Click the "log out" button. 
 
 ## Built With
 
@@ -75,9 +110,8 @@ work in progress.
 Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped me to make this application a reality.
 
 ## Support
-If you have suggestions or issues, please email me
+If you have suggestions or issues, please email me at karljohnbeck@gmail.com
 
-# Prime Project
 
 <!-- This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
 
