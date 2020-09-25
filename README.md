@@ -27,7 +27,7 @@ _Below is an image of the expiring view._
 
 _Below is an image one of the recipe page for garlic powder._
 
-![sample recipe page](/sample/recipe.png)
+![sample recipe page](/sample/recipes.png)
 
 
 
